@@ -1,0 +1,62 @@
+// load these two files for faster comparison.
+COPY_EXISTING ~guiw08.chu~ ~override~
+              ~guiw10.chu~ ~override~
+	READ_LONG 0x08 windows_cnt
+	READ_LONG 0x0c control_off
+	READ_LONG 0x10 windows_off
+	SET c = 0
+	FOR (w = 0; w < windows_cnt; w+=1) BEGIN
+		READ_SHORT windows_off + w * 0x1c        o
+		SET ow = o
+		READ_SHORT windows_off + w * 0x1c + 0x04 xPos
+		READ_SHORT windows_off + w * 0x1c + 0x06 yPos
+		READ_SHORT windows_off + w * 0x1c + 0x08 xDim
+		READ_SHORT windows_off + w * 0x1c + 0x0a yDim
+		READ_ASCII windows_off + w * 0x1c + 0x10 MosName
+		PATCH_IF xDim = 1024 BEGIN
+			TEXT_SPRINT $ chuHori0 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END ELSE PATCH_IF yDim = 768 BEGIN
+			TEXT_SPRINT $ chuVert0 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END ELSE PATCH_IF xDim = 800 BEGIN
+			TEXT_SPRINT $ chuHori8 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END ELSE  PATCH_IF yDim = 600 BEGIN
+			TEXT_SPRINT $ chuVert8 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END
+		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "xPos") = xPos
+		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "yPos") = yPos
+		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "xDim") = xDim
+		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "yDim") = yDim
+		READ_SHORT windows_off + w * 0x1c + 0x0e control_cnt
+		READ_SHORT windows_off + w * 0x1c + 0x18 control_idx
+		FOR (c = control_idx; c < control_cnt + control_idx; c+=1) BEGIN
+			READ_LONG control_off + c * 8 + 0 cntr_o
+			READ_LONG control_off + c * 8 + 4 cntr_l
+			READ_SHORT cntr_o        o
+			TEXT_SPRINT o ~%ow%-%o%~
+			READ_SHORT cntr_o + 0x4 xPos
+			READ_SHORT cntr_o + 0x6 yPos
+			READ_SHORT cntr_o + 0x8 xDim
+			READ_SHORT cntr_o + 0xa yDim
+			SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "xPos") = xPos
+			SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "yPos") = yPos
+			SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "xDim") = xDim
+			SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "yDim") = yDim
+			READ_BYTE cntr_o + 0xc type
+			PATCH_IF type = 2 BEGIN
+				READ_SHORT cntr_o + 0x24 xPos
+				READ_SHORT cntr_o + 0x26 yPos
+				READ_SHORT cntr_o + 0x28 xDim
+				READ_SHORT cntr_o + 0x2a yDim
+				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "xPosB") = xPos
+				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "yPosB") = yPos
+				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "xDimB") = xDim
+				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "yDimB") = yDim
+// 			END ELSE PATCH_IF type = 3 BEGIN
+// 				READ_SHORT cntr_o + 0x32 xPos
+// 				READ_SHORT cntr_o + 0x34 yPos
+// 				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "xPosT") = xPos
+// 				SET $ EVALUATE_BUFFER "%SOURCE_RES%_c" ("%o%" "yPosT") = yPos
+			END
+		END
+	END
+BUT_ONLY_IF_IT_CHANGES

@@ -1,0 +1,64 @@
+BACKUP ~widescreen/backup~
+AUTHOR ~http://forums.gibberlings3.net/index.php?showtopic=12988~
+
+ALLOW_MISSING ~ar1010.wed~
+
+VERSION @0
+
+README ~widescreen/readme-widescreen.html~
+
+LANGUAGE ~English~ ~widescreen/tra/english~ ~widescreen/tra/english/setup.tra~
+
+BEGIN @1
+
+OUTER_SET x = 1680
+OUTER_SET y = 1050
+OUTER_SET f = 1
+OUTER_TEXT_SPRINT sure n
+
+OUTER_SET xOld = 1024
+OUTER_SET yOld = 768
+
+DEFINE_ACTION_MACRO safe_include BEGIN
+	ACTION_IF FILE_EXISTS ~%w%~ BEGIN
+		INCLUDE ~%w%~
+	END
+END
+
+
+// required by PST-2CD
+MKDIR cache
+
+INCLUDE ~widescreen/lib/game_config.tpa~
+
+INCLUDE ~widescreen/%lib%/get_dim.tpa~
+
+INCLUDE ~widescreen/%lib%/patch_exe.tpa~
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/load_chu.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+ACTION_IF x < 1024 || y < 768 THEN BEGIN
+	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_pre.tpa~ LAUNCH_ACTION_MACRO safe_include
+END
+
+INCLUDE ~widescreen/%lib%/patch_chu.tpa~
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_mos.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+ACTION_IF  x < 1024 || y < 768 THEN BEGIN
+	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_post.tpa~ LAUNCH_ACTION_MACRO safe_include
+END
+
+ACTION_IF ENGINE_IS ~HoW~ THEN BEGIN
+	<<<<<<<< empty.ids
+	>>>>>>>>
+	COPY ~empty.ids~ ~override/diffmode.ids~
+	COPY ~empty.ids~ ~override/difflevl.ids~
+	COPY_EXISTING_REGEXP GLOB ~^.*\.bcs$~ ~override~
+		DECOMPILE_BCS_TO_BAF
+			REPLACE_TEXTUALLY ~MoveViewPointUntilDone(\([^)]*\))~ ~MoveViewPoint(\1) Wait(10)~
+		COMPILE_BAF_TO_BCS
+	BUT_ONLY_IF_IT_CHANGES
+END

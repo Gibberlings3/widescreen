@@ -1,0 +1,78 @@
+DEFINE_PATCH_MACRO fix_bmp BEGIN
+	READ_LONG   2 fSiz
+	READ_LONG  10 rOff
+	READ_LONG  18 xBmp
+	READ_LONG  22 yBmp
+	READ_SHORT 28 bits
+	READ_LONG  30 comp
+	xRatio = xBmp * 1000000 / xMaxWed
+	yRatio = yBmp * 1000000 / yMaxWed
+	PATCH_IF comp THEN BEGIN
+		INNER_ACTION BEGIN
+			PRINT @21
+			FAIL @22
+		END
+	END
+	PATCH_IF bits != 4 && bits != 8 && bits != 24 THEN BEGIN
+		INNER_ACTION BEGIN
+			PRINT @23
+			FAIL @22
+		END
+	END
+	nx = xRatio * xReq / 1000000
+	ny = yRatio * yReq / 1000000
+	PATCH_IF nx < xBmp THEN BEGIN
+		nx = xBmp
+	END
+	PATCH_IF ny < yBmp THEN BEGIN
+		ny = yBmp
+	END
+	WRITE_LONG 18 nx
+	WRITE_LONG 22 ny
+	ls = (((xBmp * bits / 8) - 1) | 3) + 1
+	ns = (((nx   * bits / 8) - 1) | 3) + 1
+	o = xBmp * yBmp * bits / 8
+	n = nx * ny * bits / 8
+	WRITE_LONG 2 fSiz + n - o
+	PATCH_IF bits <= 8 THEN BEGIN
+		black = 0
+		error = 12345678
+		FOR (i = 0; i < 1 << bits; i+=1) BEGIN
+			READ_BYTE 54 + i * 4     r
+			READ_BYTE 54 + i * 4 + 1 g
+			READ_BYTE 54 + i * 4 + 2 b
+			n = r * r + g * g + b * b
+			PATCH_IF n <error BEGIN
+				black = i
+				error = i
+			END
+		END
+		fill = black
+		PATCH_IF bits = 4 BEGIN
+			fill <<= 4
+			fill |= black
+		END
+	END ELSE BEGIN
+		fill = 0
+	END
+	FOR (i = 0; i < yBmp; i +=1) BEGIN
+		off = i * ns + ls + rOff
+		INSERT_BYTES off (ns - ls)
+		FOR (j = 0; j < (ns - ls); j +=1) BEGIN
+			WRITE_BYTE off + j fill
+		END
+	END
+	INSERT_BYTES rOff ns * (ny - yBmp)
+	FOR (j = 0; j < ns * (ny - yBmp); j +=1) BEGIN
+		WRITE_BYTE rOff + j fill
+	END
+END
+COPY_EXISTING ~%source_res%ht.bmp~ ~override~
+              ~%source_res%lm.bmp~ ~override~
+              ~%source_res%sr.bmp~ ~override~
+  LAUNCH_PATCH_MACRO fix_bmp
+
+ACTION_IF FILE_EXISTS_IN_GAME ~%source_res%nm.bmp~ BEGIN
+	COPY_EXISTING ~%source_res%nm.bmp~ ~override~
+		LAUNCH_PATCH_MACRO fix_bmp
+END

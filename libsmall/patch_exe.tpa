@@ -1,0 +1,109 @@
+DEFINE_PATCH_MACRO ~write_short~ BEGIN
+	PATCH_IF where > 0 BEGIN
+		READ_SHORT where old_v
+		PATCH_IF old_v != old THEN BEGIN
+			INNER_ACTION BEGIN
+				FAIL @16
+			END
+		END
+		WRITE_SHORT where what
+	END
+END
+
+DEFINE_PATCH_MACRO ~check_short~ BEGIN
+	PATCH_IF where > 0 BEGIN
+		READ_SHORT where old_v
+		found = 1
+		PATCH_IF old_v != old THEN BEGIN
+			error = 1
+		END
+	END
+END
+
+COPY ~%gameexe%~ ~%gameexe%~
+	error = 1
+	TEXT_SPRINT xdelta xdelta
+	TEXT_SPRINT ydelta ydelta
+	TEXT_SPRINT nop nop
+	TEXT_SPRINT Half Half
+	WHILE error BEGIN
+		error = 0
+		found = 0
+		PHP_EACH ~%xdelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			LAUNCH_PATCH_MACRO check_short
+		END
+
+		PHP_EACH ~%ydelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			LAUNCH_PATCH_MACRO check_short
+		END
+
+		PHP_EACH ~%nop%~ AS offset => old BEGIN
+			SET where = offset_0
+			LAUNCH_PATCH_MACRO check_short
+		END
+		PATCH_IF error THEN BEGIN
+			TEXT_SPRINT xdelta ~%xdelta%'~
+			TEXT_SPRINT ydelta ~%ydelta%'~
+			TEXT_SPRINT Half ~%Half%'~
+			TEXT_SPRINT nop ~%nop%'~
+		END
+		PATCH_IF !found THEN BEGIN
+			INNER_ACTION BEGIN
+				FAIL @16
+			END
+		END
+	END
+
+	// increment by XDelta
+	PHP_EACH ~%xdelta%~ AS offset => old BEGIN
+		SET where = offset_0
+		SET what = old + x - xOld
+		LAUNCH_PATCH_MACRO write_short
+	END
+
+	// increment by YDelta
+	PHP_EACH ~%ydelta%~ AS offset => old BEGIN
+		SET where = offset_0
+		SET what = old + y - yOld
+		LAUNCH_PATCH_MACRO write_short
+	END
+
+	PATCH_IF ENGINE_IS ~PST~ THEN BEGIN
+		SET where = EVALUATE_BUFFER ~x%Half%~
+		SET what = x / 2
+		SET old = 320
+		LAUNCH_PATCH_MACRO write_short
+		SET where = EVALUATE_BUFFER ~y%Half%~
+		SET what = (y - 180) / 2
+		SET old = 150
+		LAUNCH_PATCH_MACRO write_short
+	END
+	PATCH_IF f THEN BEGIN
+		PHP_EACH ~Full%xdelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			SET what = old + x - xOld
+			LAUNCH_PATCH_MACRO write_short
+		END
+
+		// increment by YDelta
+		PHP_EACH ~Full%ydelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			SET what = old + y - yOld
+			LAUNCH_PATCH_MACRO write_short
+		END
+	END ELSE BEGIN
+		PHP_EACH ~Wind%xdelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			SET what = old + x - xOld
+			LAUNCH_PATCH_MACRO write_short
+		END
+
+		// increment by YDelta
+		PHP_EACH ~Wind%ydelta%~ AS offset => old BEGIN
+			SET where = offset_0
+			SET what = old + y - yOld
+			LAUNCH_PATCH_MACRO write_short
+		END
+	END

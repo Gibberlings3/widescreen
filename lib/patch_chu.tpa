@@ -1,0 +1,63 @@
+DEFINE_PATCH_MACRO handle_single_item BEGIN
+	PHP_EACH EVALUATE_BUFFER "%list%" AS what => where BEGIN
+		INNER_PATCH ~%what_0%~ BEGIN
+			READ_ASCII 0 coord (1)
+			PATCH_IF ~%coord%~ STRING_COMPARE_CASE ~X~ THEN BEGIN
+				SET old = yOld
+			END ELSE BEGIN
+				SET old = xOld
+			END
+		END
+		READ_SHORT  o + where   curr
+			PATCH_IF curr < 0 THEN BEGIN
+				PATCH_PRINT @14
+			END
+		SET o_10 = $ EVALUATE_BUFFER "guiw10_%ii%" ("%i%" "%what_0%")
+		SET o_08 = $ EVALUATE_BUFFER "guiw08_%ii%" ("%i%" "%what_0%")
+		PATCH_IF ABS(o_10 - o_08) > 120 THEN BEGIN
+			SET new = curr + EVALUATE_BUFFER "%%coord%%" - old
+			WRITE_SHORT o + where new
+			PATCH_IF new < 0 THEN BEGIN
+				PATCH_PRINT @15
+			END
+		END
+	END
+END
+
+COPY_EXISTING ~guiw10.chu~ ~override~
+	READ_LONG 0x08 windows_cnt
+	READ_LONG 0x0c control_off
+	READ_LONG 0x10 windows_off
+	DEFINE_ASSOCIATIVE_ARRAY wlist BEGIN xPos=>4 yPos=>6 xDim=>8 yDim=>10 END
+	DEFINE_ASSOCIATIVE_ARRAY clist BEGIN xPos=>4 yPos=>6 xDim=>8 yDim=>10 END
+	DEFINE_ASSOCIATIVE_ARRAY blist BEGIN xPosB=>0x24 yPosB=>0x26 xDimB=>0x28 yDimB=>0x2a END
+	DEFINE_ASSOCIATIVE_ARRAY tlist BEGIN xPosT=>0x32 yPosT=>0x34 END
+	SET c = 0
+	FOR (w = 0; w < windows_cnt; w+=1) BEGIN
+		TEXT_SPRINT list wlist
+		TEXT_SPRINT ii w
+		SET o = windows_off + w * 0x1c
+		READ_LONG o i
+		SET iw = i
+		LAUNCH_PATCH_MACRO handle_single_item
+		READ_SHORT windows_off + w * 0x1c + 0x0e control_cnt
+		READ_SHORT windows_off + w * 0x1c + 0x18 control_idx
+		FOR (c = control_idx; c < control_cnt + control_idx; c+=1) BEGIN
+			READ_LONG control_off + c * 8 + 0 cntr_o
+			READ_LONG control_off + c * 8 + 4 cntr_l
+			TEXT_SPRINT list clist
+			TEXT_SPRINT ii c
+			SET o = cntr_o
+			READ_SHORT cntr_o i
+			TEXT_SPRINT i ~%iw%-%i%~
+			LAUNCH_PATCH_MACRO handle_single_item
+			READ_BYTE cntr_o + 0xc type
+			PATCH_IF type = 2 BEGIN
+				TEXT_SPRINT list blist
+				LAUNCH_PATCH_MACRO handle_single_item
+// 			END ELSE PATCH_IF type = 3 BEGIN
+// 				TEXT_SPRINT list blist
+// 				LAUNCH_PATCH_MACRO handle_single_item
+			END
+		END
+	END

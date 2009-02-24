@@ -1,0 +1,61 @@
+<<<<<<<< empty
+
+>>>>>>>>
+
+COPY ~empty~ ~widescreen/areas~
+
+COPY_EXISTING_REGEXP - GLOB ~^.*\.wed$~ ~...~
+	PATCH_IF SOURCE_SIZE > 0x10 BEGIN
+		READ_LONG    8 overlay_cnt
+		READ_LONG 0x10 overlay_off
+		xMaxWed = 0
+		yMaxWed = 0
+		whichMax = 0
+		FOR (i = 0; i < overlay_cnt; i+=1) BEGIN
+			READ_SHORT overlay_off + i * 0x18 + 0 xWed
+			READ_SHORT overlay_off + i * 0x18 + 2 yWed
+			PATCH_IF xWed >= xMaxWed && yWed >= yMaxWed THEN BEGIN
+				xMaxWed = xWed
+				yMaxWed = yWed
+				whichMax = i
+			END
+		END
+		PATCH_IF xMaxWed * 64 < x || yMaxWed * 64 < y THEN BEGIN
+			INNER_ACTION BEGIN
+				APPEND_OUTER ~widescreen/areas~ ~%SOURCE_RES% %xMaxWed% %yMaxWed%~
+			END
+		END
+	END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY ~widescreen/areas~ ~widescreen~
+	READ_2DA_ENTRIES_NOW areas_to_fix 3
+	FOR (bfg = 0; bfg < areas_to_fix; bfg += 1) BEGIN
+		READ_2DA_ENTRY_FORMER areas_to_fix bfg 0 source_res
+		READ_2DA_ENTRY_FORMER areas_to_fix bfg 1 xMaxWed
+		READ_2DA_ENTRY_FORMER areas_to_fix bfg 2 yMaxWed
+		origArea = xMaxWed * yMaxWed
+		xReq = x / 64
+		yReq = y / 64
+		PATCH_IF xReq < xMaxWed THEN BEGIN
+			xReq = xMaxWed
+		END
+		PATCH_IF yReq < yMaxWed THEN BEGIN
+			yReq = yMaxWed
+		END
+		PATCH_IF ~%source_res%~ STRING_COMPARE_CASE AR7200 BEGIN
+			INNER_ACTION BEGIN
+				INCLUDE ~widescreen/libsmall/patch_bmp.tpa~
+				INCLUDE ~widescreen/libsmall/patch_tis.tpa~
+				INCLUDE ~widescreen/libsmall/patch_wed.tpa~
+			END
+		END
+	END
+BUT_ONLY_IF_IT_CHANGES
+
+ACTION_PHP_EACH allOutDirAreas AS from => to BEGIN
+	OUTER_PATCH_SAVE thisBiff "%from_0%" BEGIN
+		REPLACE_TEXTUALLY CASE_INSENSITIVE "^AR" "TB#"
+	END
+	MAKE_BIFF "%thisBiff%" BEGIN "widescreen/temp/%from_0%" "^.*\.tis$" END
+END

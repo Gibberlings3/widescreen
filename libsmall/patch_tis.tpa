@@ -1,0 +1,28 @@
+OUTER_PATCH_SAVE outDirAreas ~%source_res%~ BEGIN
+	DELETE_BYTES (BUFFER_LENGTH - 1) 1
+END
+OUTER_SET $allOutDirAreas(EVALUATE_BUFFER "%outDirAreas%") = 1
+MKDIR ~widescreen/temp~
+MKDIR ~widescreen/temp/%outDirAreas%~
+
+COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
+	READ_LONG 0x08 cnt
+	READ_LONG 0x0c tiles_len
+	READ_LONG 0x10 off
+	READ_LONG 0x14 tile_siz
+	INSERT_BYTES off + cnt * tiles_len  tiles_len * xReq * (yReq - yMaxWed)
+	INSERT_BYTES off + cnt * tiles_len  tiles_len * yMaxWed * (xReq - xMaxWed)
+	WRITE_LONG 0x08 cnt + xReq * yReq - xMaxWed * yMaxWed
+
+ACTION_IF FILE_EXISTS_IN_GAME ~%source_res%.mos~ BEGIN
+	COPY_EXISTING ~%source_res%.mos~ ~override~
+		READ_ASCII 0 sig (4)
+		READ_SHORT 0x8 mosX
+		READ_SHORT 0xa mosY
+		EXTEND_MOS BOTTOM (mosY * yReq) / yMaxWed
+		EXTEND_MOS RIGHT (mosX * xReq) / xMaxWed
+		ACTION_IF ~%sig%~ STRING_COMPARE ~MOS ~ BEGIN
+			PRINT @24
+			FAIL @25
+		END
+END

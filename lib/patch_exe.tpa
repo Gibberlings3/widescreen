@@ -1,0 +1,60 @@
+DEFINE_PATCH_MACRO ~write_short~ BEGIN
+	PATCH_IF where > 0 BEGIN
+		READ_SHORT where old_v
+		PATCH_IF old_v != old THEN BEGIN
+			INNER_ACTION BEGIN
+				PRINT ~at %where% expected %old% had %old_v%~
+				FAIL @16
+			END
+		END
+		WRITE_SHORT where what
+	END
+END
+
+COPY ~%gameexe%~ ~%gameexe%~
+	// increment by XDelta
+	PHP_EACH xdelta AS offset => old BEGIN
+		SET where = offset_0
+		SET what = old + x - xOld
+		LAUNCH_PATCH_MACRO write_short
+	END
+
+	// increment by YDelta
+	PHP_EACH ydelta AS offset => old BEGIN
+		SET where = offset_0
+		SET what = old + y - yOld
+		LAUNCH_PATCH_MACRO write_short
+	END
+
+	// alter codepaths.
+ 	PHP_EACH codepaths AS offset => old BEGIN
+		SET where = offset_0
+		SET what = 1000000 // hopefully nobody will be playing BG2 on a screen 1M x 1M pixels
+		PATCH_IF where > 0x400000 THEN BEGIN
+			SET what = 0
+			SET where -= 0x400000
+		END
+		LAUNCH_PATCH_MACRO write_short
+	END
+
+	SET where = jeToJne
+	SET what = 0x850f
+	SET old = 0x840f
+	PATCH_IF where < 0 THEN BEGIN
+		SET where = 0 - where
+		SET what = 0x840f
+		SET old = 0x850f
+	END
+	LAUNCH_PATCH_MACRO write_short
+
+	INSERT_BYTES whereFake     6
+	WRITE_BYTE   whereFake     0x66
+	WRITE_BYTE   whereFake + 1 0xb8
+	WRITE_SHORT  whereFake + 2 x
+	WRITE_BYTE   whereFake + 4 0x90
+	WRITE_BYTE   whereFake + 5 0x90
+	DELETE_BYTES whereEndFake  6
+// 	PATCH_IF ENGINE_IS ~HoW~ THEN BEGIN
+// 		WRITE_BYTE 0x35A9E 0x2b // Fix some GOTOs
+// 	END
+

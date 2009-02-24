@@ -1,0 +1,101 @@
+DEFINE_PATCH_MACRO fix_one_offset BEGIN
+	READ_LONG off cur
+	PATCH_IF cur >= fix_from_where THEN BEGIN
+		WRITE_LONG off cur + delta
+	END
+// called only from fix_offset
+END
+
+DEFINE_PATCH_MACRO fix_offset BEGIN
+	off = 0x10 LAUNCH_PATCH_MACRO fix_one_offset
+	off = 0x14 LAUNCH_PATCH_MACRO fix_one_offset
+	off = 0x18 LAUNCH_PATCH_MACRO fix_one_offset
+	off = 0x1c LAUNCH_PATCH_MACRO fix_one_offset
+	READ_LONG    8 overlay_cnt
+	READ_LONG 0x10 overlay_off
+	FOR (i = 0; i < overlay_cnt; i+=1) BEGIN
+		off = overlay_off + 0x18 * i + 0x10 LAUNCH_PATCH_MACRO fix_one_offset
+		off = overlay_off + 0x18 * i + 0x14 LAUNCH_PATCH_MACRO fix_one_offset
+	END
+	READ_LONG  0xc door_cnt
+	READ_LONG 0x18 door_off
+	FOR (i = 0; i < door_cnt; i+=1) BEGIN
+		off = door_off + 0x1a * i + 0x12 LAUNCH_PATCH_MACRO fix_one_offset
+		off = door_off + 0x1a * i + 0x16 LAUNCH_PATCH_MACRO fix_one_offset
+	END
+	READ_LONG 0x14 sec_head
+	off = sec_head + 0x04 LAUNCH_PATCH_MACRO fix_one_offset
+	off = sec_head + 0x08 LAUNCH_PATCH_MACRO fix_one_offset
+	off = sec_head + 0x0c LAUNCH_PATCH_MACRO fix_one_offset
+	off = sec_head + 0x10 LAUNCH_PATCH_MACRO fix_one_offset
+// REQUIRES: fix_from_where
+// REQUIRES: delta
+END
+
+DEFINE_PATCH_MACRO add_one_row BEGIN
+	INSERT_BYTES tile_off + 10 * curHeight * curWidth 10 * curWidth
+	FOR (i = 0; i < curWidth; i += 1) BEGIN
+		WRITE_SHORT tile_off + 10 * (curHeight * curWidth + i)     tis_idx
+		WRITE_SHORT tile_off + 10 * (curHeight * curWidth + i) + 2 1
+		WRITE_SHORT tile_off + 10 * (curHeight * curWidth + i) + 4 0 - 1
+	END
+	fix_from_where = tile_off + 10 * curHeight * curWidth
+	delta = 10 * curWidth
+	LAUNCH_PATCH_MACRO fix_offset
+	look_off += delta
+	w = look_off + 2 * loo_idx
+	INSERT_BYTES look_off + 2 * loo_idx 2 * curWidth
+	FOR (i = 0; i < curWidth; i += 1) BEGIN
+		WRITE_SHORT look_off + 2 * (loo_idx + i) tis_idx
+	END
+// 	tis_idx += curWidth
+	fix_from_where = look_off + 2 * loo_idx
+	delta = 2 * curWidth
+	LAUNCH_PATCH_MACRO fix_offset
+	loo_idx += curWidth
+	curHeight = curHeight + 1
+	WRITE_SHORT overlay_off + 2 curHeight
+END
+
+DEFINE_PATCH_MACRO add_one_col BEGIN
+	curWidth = curWidth + 1
+	WRITE_SHORT overlay_off curWidth
+	FOR (k = 1; k <= curHeight; k += 1) BEGIN
+		INSERT_BYTES tile_off + 10 * k * curWidth - 10 10
+		WRITE_SHORT tile_off + 10 *  k * curWidth - 10 tis_idx
+		WRITE_SHORT tile_off + 10 *  k * curWidth - 8  1
+		WRITE_SHORT tile_off + 10 *  k * curWidth - 6  0 - 1
+		fix_from_where = tile_off + 10 * k * curWidth - 10
+		delta = 10
+		LAUNCH_PATCH_MACRO fix_offset
+		look_off += delta
+		w = look_off + 2 * loo_idx
+		INSERT_BYTES look_off + 2 * loo_idx - 2 2
+		WRITE_SHORT look_off + 2 * loo_idx - 2 tis_idx
+		fix_from_where = look_off + 2 * loo_idx - 2
+		delta = 2
+		LAUNCH_PATCH_MACRO fix_offset
+		loo_idx += 1
+	END
+END
+
+COPY_EXISTING ~%source_res%.wed~ ~override~
+	tis_idx = cnt
+	READ_LONG 0x10 overlay_off
+	READ_SHORT overlay_off      curWidth
+	READ_SHORT overlay_off + 2  curHeight
+	READ_LONG  overlay_off + 16 tile_off
+	READ_LONG  overlay_off + 20 look_off
+	loo_idx = 0
+	FOR (j = 0; j < curWidth * curHeight; j += 1) BEGIN
+		READ_SSHORT tile_off + 10 * (j)     idx
+		READ_SSHORT tile_off + 10 * (j) + 2 cnt
+		i = idx + cnt
+		loo_idx = ((loo_idx < i) ? i : loo_idx)
+	END
+	FOR (j = yMaxWed; j < yReq; j += 1) BEGIN
+		LAUNCH_PATCH_MACRO ~add_one_row~
+	END
+	FOR (j = xMaxWed; j < xReq; j += 1) BEGIN
+		LAUNCH_PATCH_MACRO ~add_one_col~
+	END

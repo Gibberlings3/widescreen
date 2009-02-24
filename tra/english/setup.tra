@@ -1,0 +1,21 @@
+@0    = ~Widescreen Mod v2.1~
+@1    = ~Widescreen Mod~
+@3    = ~Unsupported game.~
+@4    = ~Your game is not currently supported, sorry.
+Only ToB (eventually with Tutu), TotSC, IWD2 and HoW currently work.~
+@-1004 = ~PLEASE post the contents of the file~
+@-1005 = ~to this forum:~
+@5    = ~Enter your X coordinate. It should be a number, >= 800.~
+@7    = ~Enter your Y coordinate. It should be a number, >= 600.~
+@13   = ~Are you sure? Y/N~
+@14   = ~%ii% %i% %curr%~
+@15   = ~%ii% %i% %new%~
+@16   = ~EXE patching failed.~
+@17   = ~Enter your X coordinate. It should be a number, >= 640.~
+@19   = ~Enter your Y coordinate. It should be a number, >= 480.~
+@20   = ~%x% x %y%.~
+@21   = ~Compressed bitmap.~
+@22   = ~Unknown bitmap type. Bigg should program this.~
+@23   = ~%bits% BPP.~
+@24   = ~%SOURCE_RES% %sig%~
+@25   = ~MOSC~

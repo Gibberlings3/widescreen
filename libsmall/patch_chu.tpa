@@ -1,0 +1,67 @@
+COPY_EXISTING ~%chu%.chu~ ~override~
+	READ_LONG 0x08 windows_cnt
+	READ_LONG 0x10 windows_off
+	FOR (w = 0; w < windows_cnt; w+=1) BEGIN
+		wo = windows_off + w * 0x1c
+		READ_SHORT wo + 0x4 xOff
+		READ_SHORT wo + 0x6 yOff
+		READ_SHORT wo + 0x8 xDim
+		READ_SHORT wo + 0xa yDim
+		READ_ASCII wo + 0x10 mos
+		PATCH_IF xOff > 320 THEN BEGIN
+			WRITE_SHORT wo + 04 x + xOff - 640
+		END
+		PATCH_IF xDim > 320 THEN BEGIN
+			WRITE_SHORT wo + 08 x + xDim - 640
+			INNER_ACTION BEGIN
+				COPY_EXISTING ~%mos%.mos~ ~override~
+					EXTEND_MOS ~RIGHT~ x + xDim - 640
+			END
+		END
+		PATCH_IF yOff > 130 THEN BEGIN
+			WRITE_SHORT wo + 06 y + yOff - 480
+		END
+		PATCH_IF yDim > 350 THEN BEGIN
+			WRITE_SHORT wo + 10 y + yDim - 480
+			INNER_ACTION BEGIN
+				COPY_EXISTING ~%mos%.mos~ ~override~
+					EXTEND_MOS ~V300~ y + yDim - 480
+				BUT_ONLY
+			END
+		END
+	END
+
+
+COPY_EXISTING_REGEXP ~^.*\.chu$~ ~override~
+	PATCH_IF ~%SOURCE_RES%~ STRING_COMPARE_CASE ~%chu%~ THEN BEGIN
+		READ_LONG 0x08 windows_cnt
+		READ_LONG 0x10 windows_off
+		FOR (w = 0; w < windows_cnt; w+=1) BEGIN
+			wo = windows_off + w * 0x1c
+			READ_SHORT wo + 0x4 xOff
+			READ_SHORT wo + 0x6 yOff
+			READ_SHORT wo + 08 xDim
+			READ_SHORT wo + 10 yDim
+			READ_SHORT wo + 12 fl
+			READ_ASCII wo + 16 mos
+			PATCH_IF yDim + yOff = 480 THEN BEGIN
+				WRITE_SHORT wo + 10 yDim + y - 480
+			END
+			PATCH_IF xDim + xOff = 640 THEN BEGIN
+				WRITE_SHORT wo + 08 xDim + x - 640
+			END
+			PATCH_IF fl && (yDim + yOff = 480 || xDim + xOff = 640) THEN BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~%mos%.mos~ ~override~
+						PATCH_IF yDim + yOff = 480 THEN BEGIN
+							EXTEND_MOS ~BOTTOM~ y + yDim - 480
+						END
+						PATCH_IF xDim + xOff = 640 THEN BEGIN
+							EXTEND_MOS ~RIGHT~  x + xDim - 640
+						END
+					BUT_ONLY
+				END
+			END
+		END
+	END
+	BUT_ONLY
