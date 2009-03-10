@@ -5,10 +5,11 @@ ALLOW_MISSING ~ar1010.wed~
 
 VERSION @0
 
-README ~widescreen/readme-widescreen.html~
+README ~widescreen/readme-widescreen-%LANGUAGE%.html~ ~widescreen/readme-widescreen.html~
 
-LANGUAGE ~English~ ~widescreen/tra/english~ ~widescreen/tra/english/setup.tra~
 
+LANGUAGE ~English~ ~english~ ~widescreen/tra/english/setup.tra~
+LANGUAGE ~Francais (Isaya)~ ~french~ ~widescreen/tra/french/setup.tra~
 BEGIN @1
 
 OUTER_SET x = 1680
