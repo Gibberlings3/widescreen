@@ -52,14 +52,24 @@ ACTION_IF  x < 1024 || y < 768 THEN BEGIN
 	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_post.tpa~ LAUNCH_ACTION_MACRO safe_include
 END
 
-ACTION_IF ENGINE_IS ~TotLM~ THEN BEGIN
+ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 	<<<<<<<< empty.ids
 	>>>>>>>>
-	COPY ~empty.ids~ ~override/diffmode.ids~
-	COPY ~empty.ids~ ~override/difflevl.ids~
+	ACTION_FOR_EACH file IN diffmode difflevl attstyle avclass BEGIN
+	  ACTION_IF NOT FILE_EXISTS ~%file%.ids~ THEN BEGIN
+			COPY ~empty.ids~ ~override/%file%.ids~
+	  END
+	END
+
 	COPY_EXISTING_REGEXP GLOB ~^.*\.bcs$~ ~override~
-		DECOMPILE_BCS_TO_BAF
-			REPLACE_TEXTUALLY ~MoveViewPointUntilDone(\([^)]*\))~ ~MoveViewPoint(\1) Wait(10)~
-		COMPILE_BAF_TO_BCS
+		PATCH_IF ~%SOURCE_RES%~ STRING_COMPARE_CASE testocle &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_01 &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_02 &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_03
+		      THEN BEGIN
+			DECOMPILE_BCS_TO_BAF
+				REPLACE_TEXTUALLY ~MoveViewPointUntilDone(\([^)]*\))~ ~MoveViewPoint(\1) Wait(10)~
+			COMPILE_BAF_TO_BCS
+		END
 	BUT_ONLY_IF_IT_CHANGES
 END
