@@ -56,7 +56,7 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 	<<<<<<<< empty.ids
 	>>>>>>>>
 	ACTION_FOR_EACH file IN diffmode difflevl attstyle avclass BEGIN
-	  ACTION_IF NOT FILE_EXISTS ~%file%.ids~ THEN BEGIN
+	  ACTION_IF NOT FILE_EXISTS_IN_GAME ~%file%.ids~ THEN BEGIN
 			COPY ~empty.ids~ ~override/%file%.ids~
 	  END
 	END
