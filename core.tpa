@@ -1,0 +1,64 @@
+OUTER_SET x = 1680
+OUTER_SET y = 1050
+OUTER_SET f = 1
+OUTER_TEXT_SPRINT sure n
+
+OUTER_SET xOld = 1024
+OUTER_SET yOld = 768
+
+DEFINE_ACTION_MACRO safe_include BEGIN
+	ACTION_IF FILE_EXISTS ~%w%~ BEGIN
+		INCLUDE ~%w%~
+	END
+END
+
+
+// required by PST-2CD
+MKDIR cache
+
+INCLUDE ~widescreen/lib/game_config.tpa~
+
+INCLUDE ~widescreen/%lib%/get_dim.tpa~
+
+// don't try to patch gemrb
+ACTION_IF patchExe == 1 THEN BEGIN
+	INCLUDE ~widescreen/%lib%/patch_exe.tpa~
+END
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/load_chu.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+ACTION_IF x < 1024 || y < 768 THEN BEGIN
+	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_pre.tpa~ LAUNCH_ACTION_MACRO safe_include
+END
+
+INCLUDE ~widescreen/%lib%/patch_chu.tpa~
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_mos.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+
+ACTION_IF  x < 1024 || y < 768 THEN BEGIN
+	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_post.tpa~ LAUNCH_ACTION_MACRO safe_include
+END
+
+ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
+	<<<<<<<< empty.ids
+	>>>>>>>>
+	ACTION_FOR_EACH file IN diffmode difflevl attstyle avclass BEGIN
+	  ACTION_IF NOT FILE_EXISTS_IN_GAME ~%file%.ids~ THEN BEGIN
+			COPY ~empty.ids~ ~override/%file%.ids~
+	  END
+	END
+
+	COPY_EXISTING_REGEXP GLOB ~^.*\.bcs$~ ~override~
+		PATCH_IF ~%SOURCE_RES%~ STRING_COMPARE_CASE testocle &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_01 &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_02 &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_03
+		      THEN BEGIN
+			DECOMPILE_BCS_TO_BAF
+				REPLACE_TEXTUALLY ~MoveViewPointUntilDone(\([^)]*\))~ ~MoveViewPoint(\1) Wait(10)~
+			COMPILE_BAF_TO_BCS
+		END
+	BUT_ONLY_IF_IT_CHANGES
+END
