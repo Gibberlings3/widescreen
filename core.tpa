@@ -62,3 +62,14 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 		END
 	BUT_ONLY_IF_IT_CHANGES
 END
+
+// the gemrb convention for custom resolutions is "cgui" + first two
+// digits of height + first two digits of width
+ACTION_IF patchExe == 0 THEN BEGIN
+	OUTER_SET x1 = x/100 < 10 ? x/10 : x/100
+	OUTER_SET y1 = y/100 < 10 ? y/10 : y/100
+	OUTER_SPRINT newName "cgui%x1%%y1%"
+
+	// use optNoBackup so the target isn't tracked and we can have multiple
+	COPY_EXISTING + ~guiw10.chu~ ~override/%newName%.chu~
+END
