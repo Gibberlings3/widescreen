@@ -1,0 +1,23 @@
+@0    = ~Widescreen Mod v2.3~
+@1    = ~Widescreen Mod~
+@3    = ~Juego no soportado.~
+@4    = ~Lo sentimos, pero actualmente tu juego no esta soportado.
+Actualmente solo funciona con ToB (tambien con Tutu), TotSC, IWD2 y HoW.~
+@-1004 = ~POR FAVOR muestra el contenido del archivo~
+@-1005 = ~en este foro:~
+@5    = ~Introduce la coordenada X. Debe ser un numero, >= 800.~
+@7    = ~Introduce la coordenada Y. Debe ser un numero, >= 600.~
+@13   = ~Seguro? Y (Si) / N (No)~
+@14   = ~%ii% %i% %curr%~
+@15   = ~%ii% %i% %new%~
+@16   = ~Parcheado del EXE fallido.~
+@17   = ~Introduce la coordenada X. Debe ser un numero, >= 640.~
+@19   = ~Introduce la coordenada Y. Debe ser un numero, >= 480.~
+@20   = ~%x% x %y%.~
+@21   = ~Bitmap comprimido.~
+@22   = ~Tipo de bitmap desconocido. Bigg tendra que programarlo.~
+@23   = ~%bits% BPP.~
+@24   = ~%SOURCE_RES% %sig%~
+@25   = ~MOSC~
+@26   = ~para el Infinity Engine original (ELIGE ESTE!)~
+@27   = ~para GemRB~
