@@ -58,6 +58,17 @@ DEFINE_PATCH_MACRO add_one_row BEGIN
 END
 
 DEFINE_PATCH_MACRO add_one_col BEGIN
+	READ_LONG 0x1c dtil_off
+	READ_LONG 0x0c door_cnt
+	READ_LONG 0x18 door_off
+	FOR (k = 0; k < door_cnt; k+=1) BEGIN
+		READ_SHORT door_off + k * 0x1a + 0x0a dtil_fst
+		READ_SHORT door_off + k * 0x1a + 0x0c dtil_cnt
+		FOR (l = 0; l < dtil_cnt; l+=1) BEGIN
+			READ_SHORT  dtil_off + (dtil_fst + l) * 2 dtil_cur
+			WRITE_SHORT dtil_off + (dtil_fst + l) * 2 (dtil_cur + dtil_cur / curWidth)
+		END
+	END
 	curWidth = curWidth + 1
 	WRITE_SHORT overlay_off curWidth
 	FOR (k = 1; k <= curHeight; k += 1) BEGIN
