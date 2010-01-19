@@ -12,11 +12,11 @@ LANGUAGE ~English~ ~english~ ~widescreen/tra/english/setup.tra~
 LANGUAGE ~Francais (Isaya)~ ~french~ ~widescreen/tra/french/setup.tra~
 
 BEGIN @26
-FORCED_SUBCOMPONENT @1
+SUBCOMPONENT @1
 OUTER_SET patchExe = 1
 INCLUDE ~widescreen/core.tpa~
 
 BEGIN @27 // gemrb, skip the exe patching
-FORCED_SUBCOMPONENT @1
+SUBCOMPONENT @1
 OUTER_SET patchExe = 0
 INCLUDE ~widescreen/core.tpa~
