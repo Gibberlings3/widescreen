@@ -20,7 +20,7 @@ COPY_EXISTING_REGEXP - GLOB ~^.*\.wed$~ ~...~
 				whichMax = i
 			END
 		END
-		PATCH_IF xMaxWed * 64 < x || yMaxWed * 64 < y THEN BEGIN
+		PATCH_IF (xMaxWed - 3) * 64 < x || (yMaxWed - 3) * 64 < y THEN BEGIN
 			INNER_ACTION BEGIN
 				APPEND_OUTER ~widescreen/areas~ ~%SOURCE_RES% %xMaxWed% %yMaxWed%~
 			END
@@ -35,8 +35,8 @@ COPY ~widescreen/areas~ ~widescreen~
 		READ_2DA_ENTRY_FORMER areas_to_fix bfg 1 xMaxWed
 		READ_2DA_ENTRY_FORMER areas_to_fix bfg 2 yMaxWed
 		origArea = xMaxWed * yMaxWed
-		xReq = x / 64
-		yReq = y / 64
+		xReq = x / 64 + 3
+		yReq = y / 64 + 3
 		PATCH_IF xReq < xMaxWed THEN BEGIN
 			xReq = xMaxWed
 		END
