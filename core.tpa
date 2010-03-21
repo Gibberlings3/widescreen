@@ -71,5 +71,9 @@ ACTION_IF patchExe == 0 THEN BEGIN
 	OUTER_SPRINT newName "cgui%x1%%y1%"
 
 	// use optNoBackup so the target isn't tracked and we can have multiple
-	COPY_EXISTING + ~guiw10.chu~ ~override/%newName%.chu~
+	ACTION_IF ~%lib%~ STRING_EQUAL ~lib~ THEN BEGIN
+		COPY_EXISTING + ~guiw10.chu~ ~override/%newName%.chu~
+	END ELSE BEGIN
+		COPY_EXISTING + ~%chu%.chu~ ~override/%newName%.chu~
+	END
 END
