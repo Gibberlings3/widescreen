@@ -5,8 +5,8 @@ DEFINE_PATCH_MACRO fix_bmp BEGIN
 	READ_LONG  22 yBmp
 	READ_SHORT 28 bits
 	READ_LONG  30 comp
-	xRatio = xBmp * 1000000 / xMaxWed
-	yRatio = yBmp * 1000000 / yMaxWed
+	xRatio = xBmp * 1000000 / (xMaxWed - 64 * 3)
+	yRatio = yBmp * 1000000 / (yMaxWed - 64 * 3)
 	PATCH_IF comp THEN BEGIN
 		INNER_ACTION BEGIN
 			PRINT @21
