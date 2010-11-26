@@ -1,5 +1,6 @@
 // load these two files for faster comparison.
-COPY_EXISTING ~guiw08.chu~ ~override~
+COPY_EXISTING ~guiw.chu~   ~override~
+              ~guiw08.chu~ ~override~
               ~guiw10.chu~ ~override~
 	READ_LONG 0x08 windows_cnt
 	READ_LONG 0x0c control_off
@@ -21,6 +22,10 @@ COPY_EXISTING ~guiw08.chu~ ~override~
 			TEXT_SPRINT $ chuHori8 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
 		END ELSE  PATCH_IF yDim = 600 BEGIN
 			TEXT_SPRINT $ chuVert8 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END ELSE PATCH_IF xDim = 640 BEGIN
+			TEXT_SPRINT $ chuHori6 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
+		END ELSE  PATCH_IF yDim = 480 BEGIN
+			TEXT_SPRINT $ chuVert6 ( EVALUATE_BUFFER ~%%o%%~ ) "%MosName%"
 		END
 		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "xPos") = xPos
 		SET $ EVALUATE_BUFFER "%SOURCE_RES%_w" ("%o%" "yPos") = yPos
