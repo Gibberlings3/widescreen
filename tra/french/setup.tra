@@ -1,4 +1,4 @@
-@0    = ~Mod Widescreen v2.31~
+@0    = ~Mod Widescreen v3.00~
 @1    = ~Mod Widescreen~
 @3    = ~Jeu non supporte.~
 @4    = ~Votre jeu n'est pas supporte pour l'instant, desole.
@@ -21,6 +21,8 @@ Seuls ToB (avec eventuellement BG1Tutu), TotSC, IWD2 et HoW fonctionnent pour le
 @25   = ~MOSC~
 @26   = ~pour les jeux Infinity Engine originaux (CHOISISSEZ CA !)~
 @27   = ~pour GemRB~
+@28   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 480.~
+@29   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 640.~
 
 // WeiDU prompts
 @-1000= "Le mod %TP2_FILE_NAME% contient"
