@@ -44,7 +44,7 @@ ACTION_IF patchExe THEN BEGIN
   ACTION_TRY
     OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
   WITH
-      ~Failure(.resource \[.*\.PRO\] not found for .COPY..)~ BEGIN
+      ~Failure(.resource \[.*\.WED\] not found for .COPY..)~ BEGIN
       PRINT @35
       FAIL ~%ERROR_MESSAGE%~
     END DEFAULT
