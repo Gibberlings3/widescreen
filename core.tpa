@@ -41,7 +41,15 @@ INCLUDE ~widescreen/%lib%/patch_chu.tpa~
 OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_mos.tpa~ LAUNCH_ACTION_MACRO safe_include
 
 ACTION_IF patchExe THEN BEGIN
-  OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+  ACTION_TRY BEGIN
+    OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+  WITH
+      ~Failure(.resource \[.*\.PRO\] not found for .COPY..)~ BEGIN
+      PRINT @35
+      FAIL ~%ERROR_MESSAGE%~
+    END DEFAULT
+      FAIL ~%ERROR_MESSAGE%~
+  END
   
   ACTION_IF ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
   OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_sav.tpa~ LAUNCH_ACTION_MACRO safe_include
