@@ -23,3 +23,12 @@ Only ToB (eventually with Tutu), TotSC, IWD2 and HoW currently work.~
 @27   = ~for GemRB~
 @28   = ~Enter your X coordinate. It should be a number, >= 640.~
 @29   = ~Enter your Y coordinate. It should be a number, >= 480.~
+@30   = ~If you have games saved at another resolution and don't update them,
+they will be unusable. If you update them, all visited areas will be marked
+as not explored.
+
+Do you want to update your save games? Y/N~
+@31   = ~Do you want to enable support for multiple resolutions? Y/N~
+@32   = ~Enter the BIGGEST X coordinate you want to support. It should be a number, >= %x%.~
+@33   = ~Enter the BIGGEST Y coordinate you want to support. It should be a number, >= %y%.~
+@34   = ~Game resolution: %x% x %y%; save resolution: %biggerX% x %biggerY%; updating saves: %doUpdateSave%~
