@@ -11,8 +11,8 @@ Seuls ToB (avec eventuellement BG1Tutu), TotSC, IWD2 et HoW fonctionnent pour le
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
 @16   = ~Echec du patch de l'executable.~
-@17   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640.~
-@19   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 480.~
+@17   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640 (mais non 641).~
+@19   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 482.~
 @20   = ~%x% par %y%.~
 @21   = ~Image bitmap compactee.~
 @22   = ~Type de bitmap inconnu. Il faudrait que Bigg programme ca.~

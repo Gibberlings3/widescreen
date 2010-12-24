@@ -11,8 +11,8 @@ Actualmente solo funciona con ToB (tambien con Tutu), TotSC, IWD2 y HoW.~
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
 @16   = ~Parcheado del EXE fallido.~
-@17   = ~Introduce la coordenada X. Debe ser un numero, >= 640.~
-@19   = ~Introduce la coordenada Y. Debe ser un numero, >= 480.~
+@17   = ~Introduce la coordenada X. Debe ser un numero, >= 640 (pero no 641).~
+@19   = ~Introduce la coordenada Y. Debe ser un numero, >= 482.~
 @20   = ~%x% x %y%.~
 @21   = ~Bitmap comprimido.~
 @22   = ~Tipo de bitmap desconocido. Bigg tendra que programarlo.~
@@ -21,3 +21,5 @@ Actualmente solo funciona con ToB (tambien con Tutu), TotSC, IWD2 y HoW.~
 @25   = ~MOSC~
 @26   = ~para el Infinity Engine original (ELIGE ESTE!)~
 @27   = ~para GemRB~
+@28   = ~Introduce la coordenada X. Debe ser un numero, >= 640.~
+@29   = ~Introduce la coordenada Y. Debe ser un numero, >= 480.~
