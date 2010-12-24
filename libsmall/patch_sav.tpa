@@ -77,14 +77,27 @@ DEFINE_ACTION_MACRO ~patch_this_one~ BEGIN
   END
 END
 
-GET_DIRECTORY_ARRAY save save ~~
+ACTION_TRY
+  SILENT
+  GET_DIRECTORY_ARRAY save save ~~
+  WITH DEFAULT
+    ACTION_DEFINE_ARRAY save BEGIN END
+END
+
+VERBOSE
 
 ACTION_PHP_EACH save AS from => to BEGIN
   LAM ~patch_this_one~
 END
 
-GET_DIRECTORY_ARRAY mpsave mpsave ~~
+ACTION_TRY
+  SILENT
+  GET_DIRECTORY_ARRAY mpsave mpsave ~~
+  WITH DEFAULT
+    ACTION_DEFINE_ARRAY mpsave BEGIN END
+END
 
+VERBOSE
 ACTION_PHP_EACH mpsave AS from => to BEGIN
   LAM ~patch_this_one~
 END

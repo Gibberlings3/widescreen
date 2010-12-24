@@ -10,10 +10,14 @@ Only ToB (eventually with Tutu), TotSC, IWD2 and HoW currently work.~
 @13   = ~Are you sure? Y/N~
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
-@16 = ~EXE PATCHING FAILED.
+@16 = ~
+
+EXE PATCHING FAILED.
 You need to install the latest patch (which would be Trials of the Luremaster if you're on Heart of Winter) and make sure you aren't installing the mod twice (which includes attempting to install it on EasyTutu or a cloned install when it is already installed on your main install).
 
-Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.~
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~
 @17   = ~Enter your X coordinate. It should be a number, >= 640 (but not 641).~
 @19   = ~Enter your Y coordinate. It should be a number, >= 482.~
 @20   = ~%x% x %y%.~
@@ -35,6 +39,10 @@ Do you want to update your save games? Y/N~
 @32   = ~Enter the BIGGEST X coordinate you want to support. It should be a number, >= %x%.~
 @33   = ~Enter the BIGGEST Y coordinate you want to support. It should be a number, >= %y%.~
 @34   = ~Game resolution: %x% x %y%; save resolution: %biggerX% x %biggerY%; updating saves: %doUpdateSave%~
-@35 = ~You need to perform a full install of your game and make sure that the .ini points to the correct paths.
+@35   = ~
 
-Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.~
+You need to perform a full install of your game and make sure that the .ini points to the correct paths.
+
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~
