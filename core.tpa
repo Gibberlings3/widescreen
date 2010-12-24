@@ -46,9 +46,9 @@ ACTION_IF patchExe THEN BEGIN
   WITH
       ~Failure(.resource \[.*\.WED\] not found for .COPY..)~ BEGIN
       PRINT @35
-      FAIL ~%ERROR_MESSAGE%~
+      ACTION_RERAISE
     END DEFAULT
-      FAIL ~%ERROR_MESSAGE%~
+      ACTION_RERAISE
   END
   
   ACTION_IF ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
