@@ -21,8 +21,23 @@ Seuls ToB (avec eventuellement BG1Tutu), TotSC, IWD2 et HoW fonctionnent pour le
 @25   = ~MOSC~
 @26   = ~pour les jeux Infinity Engine originaux (CHOISISSEZ CA !)~
 @27   = ~pour GemRB~
-@28   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 480.~
-@29   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 640.~
+@28   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640.~
+@29   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 480.~
+@30 = ~Si vous avez des parties sauvegardees sous une autre resolution et que vous ne les mettez pas a jour, elles deviendront inutilisables. Si vous les mettez a jour, toutes les zones visitees seront marquees comme inexplorees.
+
+Voulez-vous mettre a jour vos parties sauvegardees? Y pour [oui] / N pour [non]~
+@31 = ~Voulez-vous permettre le support de resolutions multiples ? Y pour [oui] / N pour [non]~
+@32 = ~Indiquez la taille MAXIMUM sur l'axe X. Il doit s'agir d'un nombre >= %x%.~
+@33 = ~Indiquez la taille MAXIMUM sur l'axe Y. Il doit s'agir d'un nombre >= %y%.~
+@34 = ~Resolution du jeu : %x% x %y%; resolution de sauvegarde : %biggerX% x %biggerY%; mise a jour des sauvegardes : %doUpdateSave%~
+@35 = ~Vous devez faire une installation complete du jeu et vous assurer que le fichier .ini pointe les chemins d'acces corrects.
+
+Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez prouver que vous vous trouvez dans des circonstances exceptionnelles.~
+@16 = ~
+
+Vous devez installer le patch le plus recent (qui sera Trials of the Luremaster si vous etes sur Heart of Winter) et vous assurer que vous n'etes pas en train d'installer le patch pour la seconde fois (ce qui inclut la tentative d'installation sur EasyTutu ou un cas d'installation clone s'il est deja installe sur votre installation principale).
+
+Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez prouver que vous vous trouvez dans des circonstances exceptionnelles.~
 
 // WeiDU prompts
 @-1000= "Le mod %TP2_FILE_NAME% contient"
