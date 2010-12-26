@@ -11,14 +11,6 @@ Only ToB (eventually with Tutu), TotSC, IWD2 and HoW currently work.~
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
 @16 = ~EXE PATCHING FAILED.~
-@36 = ~
-
-EXE PATCHING FAILED.
-You need to install the latest patch (which would be Trials of the Luremaster if you're on Heart of Winter) and make sure you aren't installing the mod twice (which includes attempting to install it on EasyTutu or a cloned install when it is already installed on your main install).
-
-Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
-
-~
 @17   = ~Enter your X coordinate. It should be a number, >= 640 (but not 641).~
 @19   = ~Enter your Y coordinate. It should be a number, >= 482.~
 @20   = ~%x% x %y%.~
