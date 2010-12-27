@@ -33,6 +33,7 @@ OUTER_PATCH ~~ BEGIN
   
 		PATCH_PRINT @20
 
+    SPRINT sure ~~
     WHILE ~%sure%~ STRING_COMPARE_CASE ~N~ && ~%sure%~ STRING_COMPARE_CASE ~Y~ BEGIN
       PATCH_PRINT @13
       PATCH_READLN sure
