@@ -1,8 +1,14 @@
 @0    = ~Widescreen Mod v3.01~
 @1    = ~Widescreen Mod~
 @3    = ~Unsupported game.~
-@4    = ~Your game is not currently supported, sorry.
-Only ToB (eventually with Tutu), TotSC, IWD2 and HoW currently work.~
+@4    = ~
+
+Your game is not currently supported, sorry.
+Only ToB (eventually with Tutu), TotSC, PST, IWD2 and TotLM currently work.
+
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~
 @-1004 = ~PLEASE post the contents of the file~
 @-1005 = ~to this forum:~
 @5    = ~Enter your X coordinate. It should be a number, >= 800.~

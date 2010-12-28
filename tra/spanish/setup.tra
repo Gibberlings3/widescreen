@@ -1,8 +1,14 @@
 @0    = ~Widescreen Mod v3.01~
 @1    = ~Widescreen Mod~
 @3    = ~Juego no soportado.~
-@4    = ~Lo sentimos, pero actualmente tu juego no esta soportado.
-Actualmente solo funciona con ToB (tambien con Tutu), TotSC, IWD2 y HoW.~
+@4    = ~
+
+Lo sentimos, pero actualmente tu juego no esta soportado.
+Actualmente solo funciona con ToB (tambien con Tutu), TotSC, PST, IWD2 y TotLM.
+
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~
 @-1004 = ~POR FAVOR muestra el contenido del archivo~
 @-1005 = ~en este foro:~
 @5    = ~Introduce la coordenada X. Debe ser un numero, >= 800.~
@@ -32,11 +38,17 @@ Quieres actualizar tus partidas guardadas? Y (Si) /N (No)~
 @32 = ~Introduce la MAYOR coordenada X que quieras soportar. Debera ser un numero, >= %x%.~
 @33 = ~Introduce la MAYOR coordenada Y que quieras soportar. Debera ser un numero, >= %y%.~
 @34 = ~Resolucion del juego: %x% x %y%; resolucion a guardar: %biggerX% x %biggerY%; actualizando partidas guardadas: %doUpdateSave%~
-@35 = ~Tienes que hacer una instalación completa de tu juego y asegurarte de que las entradas del .ini tienen las rutas correctas.
+@35 = ~
 
-Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.~
+Tienes que hacer una instalación completa de tu juego y asegurarte de que las entradas del .ini tienen las rutas correctas.
+
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~
 @36 = ~
 
 Necesitas instalar el ultimo parche (que es el Trials of the Luremaster si tienes el Heart of Winter) y asegurate de que no estas instalando el mod dos veces (lo que incluye intentos de instalarlo en EasyTutu o en una instalacion cln cuando ya lo instalaste en tu instalacion principal).
 
-Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.~
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~
