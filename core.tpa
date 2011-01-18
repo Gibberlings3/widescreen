@@ -73,7 +73,10 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 		PATCH_IF ~%SOURCE_RES%~ STRING_COMPARE_CASE testocle &&
 		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_01 &&
 		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_02 &&
-		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_03
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE test_03 &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE pbarcher &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE pbmage &&
+		         ~%SOURCE_RES%~ STRING_COMPARE_CASE pbcleric
 		      THEN BEGIN
 			DECOMPILE_BCS_TO_BAF
 				REPLACE_TEXTUALLY ~MoveViewPointUntilDone(\([^)]*\))~ ~MoveViewPoint(\1) Wait(10)~
