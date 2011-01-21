@@ -83,6 +83,7 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 			COMPILE_BAF_TO_BCS
 		END
 	BUT_ONLY_IF_IT_CHANGES
+  IF ~264~
 END
 
 // the gemrb convention for custom resolutions is "cgui" + first two
