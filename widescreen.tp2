@@ -11,6 +11,7 @@ README ~widescreen/readme-widescreen-%LANGUAGE%.html~ ~widescreen/readme-widescr
 LANGUAGE ~English~ ~english~ ~widescreen/tra/english/setup.tra~
 LANGUAGE ~Francais (Isaya & Lothringen)~ ~french~ ~widescreen/tra/french/setup.tra~
 LANGUAGE ~Spanish (ghildrean & Ancalagon el Negro)~ ~spanish~ ~widescreen/tra/spanish/setup.tra~
+LANGUAGE ~Russian by Prowler & Njkzy (arcanecoast.ru)~ ~russian~ ~widescreen/tra/russian/setup.tra~
 
 BEGIN @26
 SUBCOMPONENT @1
