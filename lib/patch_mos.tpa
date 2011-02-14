@@ -20,7 +20,7 @@ ACTION_PHP_EACH chuHori0 AS ign => which BEGIN
     EXTEND_MOS "%mode%" x
 END
 
-ACTION_IF y > 481 THEN BEGIN
+ACTION_IF y > 481 && (y > 601 || !GAME_IS IWD2) THEN BEGIN
   COPY_EXISTING ~ston10t.mos~ ~override~
     EXTEND_MOS "TOP" (y - ySto) / 2
 

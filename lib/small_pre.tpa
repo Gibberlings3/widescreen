@@ -35,6 +35,7 @@ ACTION_IF (x >= 800 && y >= 600) && (!(GAME_IS IWD2) || (x >= 1024 && y >= 768))
 		            ~ston08r.mos~ ~override/ston10r.mos~
 		            ~ston08b.mos~ ~override/ston10b.mos~
 END ELSE BEGIN
+  PRINT ~really small~
   COPY ~widescreen/pixel.mos~ ~override/ston10t.mos~
        ~widescreen/pixel.mos~ ~override/ston10l.mos~
        ~widescreen/pixel.mos~ ~override/ston10r.mos~
