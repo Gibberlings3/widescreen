@@ -1,0 +1,54 @@
+@0    = ~Widescreen Mod v3.02~
+@1    = ~Widescreen Mod~
+@3    = ~Juego no soportado.~
+@4    = ~
+
+Lo sentimos, pero actualmente tu juego no esta soportado.
+Actualmente solo funciona con ToB (tambien con Tutu), TotSC, PST, IWD2 y TotLM.
+
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~
+@-1004 = ~POR FAVOR muestra el contenido del archivo~
+@-1005 = ~en este foro:~
+@5    = ~Introduce la coordenada X. Debe ser un numero, >= 800.~
+@7    = ~Introduce la coordenada Y. Debe ser un numero, >= 600.~
+@13   = ~Seguro? Y (Si) / N (No)~
+@14   = ~%ii% %i% %curr%~
+@15   = ~%ii% %i% %new%~
+@16   = ~Parcheado del EXE fallido.~
+@17   = ~Introduce la coordenada X. Debe ser un numero, >= 640 (pero no 641).~
+@19   = ~Introduce la coordenada Y. Debe ser un numero, >= 482.~
+@20   = ~%x% x %y%.~
+@21   = ~Bitmap comprimido.~
+@22   = ~Tipo de bitmap desconocido. Bigg tendra que programarlo.~
+@23   = ~%bits% BPP.~
+@24   = ~%SOURCE_RES% %sig%~
+@25   = ~MOSC~
+@26   = ~para el Infinity Engine original (ELIGE ESTE!)~
+@27   = ~para GemRB~
+@28   = ~Introduce la coordenada X. Debe ser un numero, >= 640.~
+@29   = ~Introduce la coordenada Y. Debe ser un numero, >= 480.~
+@30 = ~Si tienes las partidas guardadas en otra resolucion y no las actualizas,
+no podrás usarlas. Si las actualizas, todas las zonas visitadas seran marcadas
+como no exploradas.
+
+Quieres actualizar tus partidas guardadas? Y (Si) /N (No)~
+@31 = ~Quieres permitir que se soporten multiples resoluciones? Y (Si) /N (No)~
+@32 = ~Introduce la MAYOR coordenada X que quieras soportar. Debera ser un numero, >= %x%.~
+@33 = ~Introduce la MAYOR coordenada Y que quieras soportar. Debera ser un numero, >= %y%.~
+@34 = ~Resolucion del juego: %x% x %y%; resolucion a guardar: %biggerX% x %biggerY%; actualizando partidas guardadas: %doUpdateSave%~
+@35 = ~
+
+Tienes que hacer una instalación completa de tu juego y asegurarte de que las entradas del .ini tienen las rutas correctas.
+
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~
+@36 = ~
+
+Necesitas instalar el ultimo parche (que es el Trials of the Luremaster si tienes el Heart of Winter) y asegurate de que no estas instalando el mod dos veces (lo que incluye intentos de instalarlo en EasyTutu o en una instalacion cln cuando ya lo instalaste en tu instalacion principal).
+
+Los post informando de este problema SERAN IGNORADOS a menos que puedas probar que hay circunstancias excepcionales.
+
+~

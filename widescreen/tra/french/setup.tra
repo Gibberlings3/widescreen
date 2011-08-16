@@ -1,0 +1,91 @@
+@0    = ~Mod Widescreen v3.02~
+@1    = ~Mod Widescreen~
+@3    = ~Jeu non supporte.~
+@4    = ~
+
+Votre jeu n'est pas supporte pour l'instant, desole.
+Seuls ToB (avec eventuellement BG1Tutu), TotSC, PST, IWD2 et TotLM fonctionnent pour le moment.
+
+Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez prouver que vous vous trouvez dans des circonstances exceptionnelles.
+
+~
+@-1004 = ~S'IL VOUS PLAIT, postez le contenu du fichier~
+@-1005 = ~dans ce forum :~
+@5    = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 800.~
+@7    = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 600.~
+@13   = ~Etes-vous sur(e)? Y (oui) / N (non)~
+@14   = ~%ii% %i% %curr%~
+@15   = ~%ii% %i% %new%~
+@16   = ~Echec du patch de l'executable.~
+@17   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640 (mais non 641).~
+@19   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 482.~
+@20   = ~%x% par %y%.~
+@21   = ~Image bitmap compactee.~
+@22   = ~Type de bitmap inconnu. Il faudrait que Bigg programme ca.~
+@23   = ~%bits% BPP.~
+@24   = ~%SOURCE_RES% %sig%~
+@25   = ~MOSC~
+@26   = ~pour les jeux Infinity Engine originaux (CHOISISSEZ CA !)~
+@27   = ~pour GemRB~
+@28   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640.~
+@29   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 480.~
+@30 = ~Si vous avez des parties sauvegardees sous une autre resolution et que vous ne les mettez pas a jour, elles deviendront inutilisables. Si vous les mettez a jour, toutes les zones visitees seront marquees comme inexplorees.
+
+Voulez-vous mettre a jour vos parties sauvegardees? Y pour [oui] / N pour [non]~
+@31 = ~Voulez-vous permettre le support de resolutions multiples ? Y pour [oui] / N pour [non]~
+@32 = ~Indiquez la taille MAXIMUM sur l'axe X. Il doit s'agir d'un nombre >= %x%.~
+@33 = ~Indiquez la taille MAXIMUM sur l'axe Y. Il doit s'agir d'un nombre >= %y%.~
+@34 = ~Resolution du jeu : %x% x %y%; resolution de sauvegarde : %biggerX% x %biggerY%; mise a jour des sauvegardes : %doUpdateSave%~
+@35 = ~
+
+Vous devez faire une installation complete du jeu et vous assurer que le fichier .ini pointe les chemins d'acces corrects.
+
+Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez prouver que vous vous trouvez dans des circonstances exceptionnelles.
+
+~
+@36 = ~
+
+Vous devez installer le patch le plus recent (qui sera Trials of the Luremaster si vous etes sur Heart of Winter) et vous assurer que vous n'etes pas en train d'installer le patch pour la seconde fois (ce qui inclut la tentative d'installation sur EasyTutu ou un cas d'installation clone s'il est deja installe sur votre installation principale).
+
+Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez prouver que vous vous trouvez dans des circonstances exceptionnelles.
+
+~
+
+// WeiDU prompts
+@-1000= "Le mod %TP2_FILE_NAME% contient"
+@-1001= "composants optionnels distincts.
+Pour gagner du temps, vous pouvez choisir ce que vous souhaitez faire d'eux
+au niveau general plutot que de repondre aux questions pour chacun.\n"
+@-1002= "Que faut-il faire de tous les composants qui NE sont PAS ENCORE installes ?
+Les [I]nstaller, les [S]auter, dem[A]nder pour chacun ? "
+@-1003= "Que faut-il faire de tous les composants qui sont DEJA installes ?
+Les [R]einstaller, les s[U]pprimer, dem[A]nder pour chacun ? "
+
+//@-1004= "S'IL VOUS PLAIT, envoyez par e-mail le fichier"
+//@-1005= "a"
+
+@-1006= "Installer le composant ["
+@-1007= "] ?
+[R]einstaller, co[N]server, s[U]pprimer ou [Q]uitter ? "
+@-1008= "] ?
+[I]nstaller, [N]e pas installer ou [Q]uitter ? "
+
+@-1009= "Entrez une partie du nom du module : "
+
+@-1010= "Reinstallation du composant ["
+@-1011= "] "
+@-1012= "Reinstallation dans la langue"
+
+@-1013= "Suppression de l'ancienne installation de ["
+@-1014= "] au prealable..."
+@-1015= "SUPPRESSION REUSSIE DE L'ANCIEN"
+
+@-1016= "Installation en cours"
+@-1017= "ERREUR pendant l'installation de ["
+@-1018= "], retour a l'etat anterieur"
+@-1019= "INSTALLATION REUSSIE"
+@-1020= "Saute"
+@-1021= "Suppression de ["
+@-1022= "] (composant #"
+@-1023= ")"
+@-1024= "SUPPRESSION REUSSIE DE ["

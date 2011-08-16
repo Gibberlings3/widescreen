@@ -1,0 +1,103 @@
+DEFINE_ACTION_MACRO ~patch_this_one~ BEGIN
+  OUTER_SPRINT file ~baldur.sav~
+  ACTION_IF GAME_IS ~pst~ THEN BEGIN
+    OUTER_SPRINT file ~torment.sav~
+  END
+  ACTION_IF FILE_EXISTS ~%to%/%file%~ BEGIN
+    COPY + ~%to%/%file%~ ~%to%/%file%~
+      EDIT_SAV_FILE 1 BEGIN
+        INNER_PATCH ~%SAV_FILE%~ BEGIN
+          REPLACE_EVALUATE ~^\(.*\)\.\(.*\)$~ BEGIN
+            SPRINT SAV_RES ~%MATCH1%~
+            SPRINT SAV_EXT ~%MATCH2%~
+          END ~%MATCH0%~
+        END
+        PATCH_IF ~%SAV_EXT%~ STRING_EQUAL_CASE ~ARE~ THEN BEGIN
+          READ_LONG 0x9c mask_len
+          READ_LONG 0xa0 mask_off
+          INNER_PATCH_FILE ~%SAV_RES%.wed~ BEGIN
+            READ_LONG    8 overlay_cnt
+            READ_LONG 0x10 overlay_off
+            xMaxWed = 0
+            yMaxWed = 0
+            whichMax = 0
+            FOR (i = 0; i < overlay_cnt; i+=1) BEGIN
+              READ_SHORT overlay_off + i * 0x18 + 0 xWed
+              READ_SHORT overlay_off + i * 0x18 + 2 yWed
+              PATCH_IF xWed >= xMaxWed && yWed >= yMaxWed THEN BEGIN
+                xMaxWed = xWed
+                yMaxWed = yWed
+                whichMax = i
+              END
+            END
+            new_mask_len = (xMaxWed * yMaxWed * 4 + 7) / 8
+          END
+          PATCH_IF new_mask_len != mask_len THEN BEGIN
+            WRITE_LONG 0x9c new_mask_len
+            diff = mask_len - new_mask_len
+            DELETE_BYTES mask_off mask_len
+            INSERT_BYTES mask_off new_mask_len
+            PATCH_FOR_EACH off IN 0x0054 0x005c 0x0060 0x0068 0x0070 0x0078 0x007c 0x0084 0x0088
+              0x00a8 0x00ac 0x00b0 0x00b8 0x00bc 0x00c0
+            BEGIN
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+            END
+            
+            PATCH_IF ENGINE_IS ~pst~ THEN BEGIN
+              off = 0xc8
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+            END ELSE PATCH_IF ENGINE_IS ~totsc~ THEN BEGIN
+              off = 0xc4
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+              off = 0xcc
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+            END
+            
+            READ_LONG 0x54 actor_off
+            READ_SHORT 0x58 actor_cnt
+            WHILE (actor_cnt > 0) BEGIN
+              --actor_cnt
+              off = actor_off + actor_cnt * 0x110 + 0x88
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+            END
+
+            READ_LONG 0xb4 tiled_off
+            READ_SHORT 0xb8 tiled_cnt
+            WHILE (tiled_cnt > 0) BEGIN
+              --tiled_cnt
+              off = tiled_off + tiled_cnt * 0x6c + 0x2c
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+              off = tiled_off + tiled_cnt * 0x6c + 0x34
+              WRITE_LONG off ((LONG_AT off > mask_off) ? (LONG_AT off - diff) : (LONG_AT off))
+            END
+          END
+        END
+      END
+    BUT_ONLY
+  END
+END
+
+ACTION_TRY
+  SILENT
+  GET_DIRECTORY_ARRAY save save ~~
+  WITH DEFAULT
+    ACTION_DEFINE_ARRAY save BEGIN END
+END
+
+VERBOSE
+
+ACTION_PHP_EACH save AS from => to BEGIN
+  LAM ~patch_this_one~
+END
+
+ACTION_TRY
+  SILENT
+  GET_DIRECTORY_ARRAY mpsave mpsave ~~
+  WITH DEFAULT
+    ACTION_DEFINE_ARRAY mpsave BEGIN END
+END
+
+VERBOSE
+ACTION_PHP_EACH mpsave AS from => to BEGIN
+  LAM ~patch_this_one~
+END

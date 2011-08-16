@@ -1,0 +1,30 @@
+ACTION_IF x >= 800 && y >= 600 THEN BEGIN
+  ACTION_PHP_EACH chuHori0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuHori8 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%which%.mos~ ~override/%old%.mos~
+  END
+
+  ACTION_PHP_EACH chuVert0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuVert8 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%which%.mos~ ~override/%old%.mos~
+  END
+END ELSE BEGIN
+  ACTION_PHP_EACH chuHori0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuHori6 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%which%.mos~ ~override/%old%.mos~
+  END
+
+  ACTION_PHP_EACH chuVert0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuVert6 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%which%.mos~ ~override/%old%.mos~
+  END
+END
+
+ACTION_IF x = 800 THEN BEGIN
+
+	COPY_EXISTING  ~ston10t.mos~  ~override/ston08t.mos~
+		             ~ston10l.mos~  ~override/ston08l.mos~
+		             ~ston10r.mos~  ~override/ston08r.mos~
+		             ~ston10b.mos~  ~override/ston08b.mos~
+		              ~guiw10.chu~   ~override/guiw08.chu~
+END

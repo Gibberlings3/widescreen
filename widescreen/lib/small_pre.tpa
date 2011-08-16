@@ -1,0 +1,43 @@
+ACTION_IF x >= 800 && y >= 600 THEN BEGIN
+  ACTION_PHP_EACH chuHori0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuHori8 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%old%.mos~ ~override/%which%.mos~
+  END
+
+  ACTION_PHP_EACH chuVert0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuVert8 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%old%.mos~ ~override/%which%.mos~
+  END
+
+  OUTER_SET xOld = 800
+  OUTER_SET yOld = 600
+	COPY_EXISTING ~guiw08.chu~   ~override/guiw10.chu~
+
+END ELSE BEGIN
+  ACTION_PHP_EACH chuHori0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuHori6 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%old%.mos~ ~override/%which%.mos~
+  END
+
+  ACTION_PHP_EACH chuVert0 AS idx => which BEGIN
+    OUTER_TEXT_SPRINT old $ chuVert6 (EVALUATE_BUFFER ~%idx_0%~)
+    COPY_EXISTING ~%old%.mos~ ~override/%which%.mos~
+  END
+
+  OUTER_SET xOld = 640
+  OUTER_SET yOld = 480
+	COPY_EXISTING ~guiw.chu~   ~override/guiw10.chu~
+END
+
+ACTION_IF (x >= 800 && y >= 600) && (!(GAME_IS IWD2) || (x >= 1024 && y >= 768)) BEGIN
+  COPY_EXISTING ~ston08t.mos~ ~override/ston10t.mos~
+		            ~ston08l.mos~ ~override/ston10l.mos~
+		            ~ston08r.mos~ ~override/ston10r.mos~
+		            ~ston08b.mos~ ~override/ston10b.mos~
+END ELSE BEGIN
+  PRINT ~really small~
+  COPY ~widescreen/pixel.mos~ ~override/ston10t.mos~
+       ~widescreen/pixel.mos~ ~override/ston10l.mos~
+       ~widescreen/pixel.mos~ ~override/ston10r.mos~
+       ~widescreen/pixel.mos~ ~override/ston10b.mos~
+END

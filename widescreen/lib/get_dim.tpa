@@ -1,0 +1,42 @@
+OUTER_PATCH ~~ BEGIN
+	WHILE ~%sure%~ STRING_COMPARE_CASE ~y~ BEGIN
+		SET x = 0
+		SET y = 0
+		SET f = 1
+		WHILE (x < 800 || GAME_IS ~iwd2~) && (x < 640 || (patchExe && x = 641)) BEGIN
+			TEXT_SPRINT x ~foo~
+			WHILE ! IS_AN_INT ~%x%~ BEGIN
+        PATCH_IF GAME_IS ~iwd2~ THEN BEGIN
+          PATCH_PRINT @5
+        END ELSE PATCH_IF patchExe THEN BEGIN
+          PATCH_PRINT @17
+        END ELSE BEGIN
+          PATCH_PRINT @28
+        END
+				PATCH_READLN x
+			END
+		END
+
+		WHILE (y < 600 || GAME_IS ~iwd2~) && (y < 482 && (patchExe || y < 480)) BEGIN
+			TEXT_SPRINT y ~foo~
+			WHILE ! IS_AN_INT ~%y%~ BEGIN
+        PATCH_IF GAME_IS ~iwd2~ THEN BEGIN
+          PATCH_PRINT @7
+        END ELSE PATCH_IF patchExe THEN BEGIN
+          PATCH_PRINT @19
+        END ELSE BEGIN
+          PATCH_PRINT @29
+        END
+				PATCH_READLN y
+			END
+		END
+  
+		PATCH_PRINT @20
+
+    SPRINT sure ~~
+    WHILE ~%sure%~ STRING_COMPARE_CASE ~N~ && ~%sure%~ STRING_COMPARE_CASE ~Y~ BEGIN
+      PATCH_PRINT @13
+      PATCH_READLN sure
+    END
+	END
+END

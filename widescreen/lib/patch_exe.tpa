@@ -3,7 +3,8 @@ DEFINE_PATCH_MACRO ~write_short~ BEGIN
 		READ_SHORT where old_v
 		PATCH_IF old_v != old THEN BEGIN
 			INNER_ACTION BEGIN
-				PRINT ~at %where% expected %old% had %old_v%~
+				// PRINT ~at %where% expected %old% had %old_v%~
+        PRINT @36
 				FAIL @16
 			END
 		END

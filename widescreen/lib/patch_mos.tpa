@@ -1,0 +1,54 @@
+ACTION_PHP_EACH chuVert0 AS ign => which BEGIN
+  COPY_EXISTING ~%which%.mos~ ~override~
+    PATCH_IF yOld >= 600 THEN BEGIN
+      EXTEND_MOS "V400" y
+    END ELSE BEGIN
+      EXTEND_MOS "V300" y
+    END
+END
+
+ACTION_PHP_EACH chuHori0 AS ign => which BEGIN
+  COPY_EXISTING ~%which%.mos~ ~override~
+    PATCH_IF xPatchMos < 0 THEN BEGIN
+      xPatchMos = xOld + xPatchMos
+    END
+    PATCH_IF xPatchMos = 0 BEGIN
+      TEXT_SPRINT mode RIGHT
+    END ELSE BEGIN
+      TEXT_SPRINT mode "H%xPatchMos%"
+    END
+    EXTEND_MOS "%mode%" x
+END
+
+ACTION_IF y > 481 && (y > 601 || !GAME_IS IWD2) THEN BEGIN
+  COPY_EXISTING ~ston10t.mos~ ~override~
+    EXTEND_MOS "TOP" (y - ySto) / 2
+
+  COPY_EXISTING ~ston10b.mos~ ~override~
+    EXTEND_MOS "BOTTOM" (y - ySto) / 2
+END
+
+COPY_EXISTING ~ston10t.mos~ ~override~
+              ~ston10b.mos~ ~override~
+  PATCH_IF ENGINE_IS IWD2 THEN BEGIN
+    EXTEND_MOS "HCENT" 800
+  END ELSE BEGIN
+    EXTEND_MOS "HCENT" 640
+  END
+
+
+COPY_EXISTING ~ston10r.mos~ ~override~
+  PATCH_IF x > 641 && (!(ENGINE_IS IWD2) || x > 801) THEN BEGIN
+    EXTEND_MOS "RIGHT" (x - xSto) / 2
+  END
+  PATCH_IF y > 481 && (!(ENGINE_IS IWD2) || y > 601) THEN BEGIN
+    EXTEND_MOS "VCENT" y
+  END
+
+COPY_EXISTING ~ston10l.mos~ ~override~
+  PATCH_IF x > 641 && (!(ENGINE_IS IWD2) || x > 801) THEN BEGIN
+    EXTEND_MOS "LEFT" (x - xSto) / 2
+  END
+  PATCH_IF y > 481 && (!(ENGINE_IS IWD2) || y > 601) THEN BEGIN
+    EXTEND_MOS "VCENT" y
+  END

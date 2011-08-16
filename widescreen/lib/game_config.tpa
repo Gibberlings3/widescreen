@@ -109,6 +109,8 @@ END ELSE ACTION_IF ENGINE_IS ~PST~ BEGIN
 		yHalf = 0x9a617
 		xHalf' = 0x9a5cb
 		yHalf' = 0x9a5d7
+		xHalf'' = 0x984db
+		yHalf'' = 0x984e7
 		DEFINE_ASSOCIATIVE_ARRAY xdelta BEGIN  0x432300 => 640 0x42cfa3 => 640 0x42e6a5 => 640 0x3D5803 => 639 0x40673b => 640 0x7f774 => 640
 																					 0x1d38d9 => 640 0x3d6489 => 640 0x3d838c => 640 0x4063fe => 640
 																					 0x1a28ec => 640 0x3cad81 => 640 0x3caeac => 640 0x3caeb3 => 639
@@ -125,14 +127,26 @@ END ELSE ACTION_IF ENGINE_IS ~PST~ BEGIN
 																					 0x1d3720 => 407 0x3d62d0 => 407 0x3d81d3 => 407 0x406248 => 407
 																					 0x1a28b3 => 480 0x3cad17 => 407 0x3cad1e => 407 0x3cabc8 => 480
 																					 0x850a7  => 439 0x852d0  => 439  END
+		DEFINE_ASSOCIATIVE_ARRAY xdelta'' BEGIN  0x425640 => 640 0x4202e3 => 640 0x4219e5 => 640 0x3c8fc5 => 639 0x3f9a80 => 640 0x7e0dd => 640
+																					 0x1caf79 => 640 0x3c9c4b => 640 0x3cbb4e => 640 0x3f9743 => 640
+																					 0x19a37c => 640 0x3be5d1 => 640 0x3be6fc => 640 0x3be703 => 639
+																					 0x83eb8 => 599 0x840e0  => 599 END
+		DEFINE_ASSOCIATIVE_ARRAY ydelta'' BEGIN  0x425647 => 480 0x4202ec => 480 0x4219e0 => 480 0x3c8fcf => 288 0x3f9a8a => 288 0x7e0e7 => 407
+																					 0x1caf80 => 407 0x3c9c52 => 407 0x3cbb55 => 407 0x3f974d => 407
+																					 0x19a383 => 480 0x3be727 => 407 0x3be72e => 407 0x3be5d8 => 480
+																					 0x83a50  => 439 0x83c79  => 439 END
 		DEFINE_ASSOCIATIVE_ARRAY Windxdelta BEGIN 0x42e7dc => 640 0x42ec2a => 640 0x430545 => 640 END
 		DEFINE_ASSOCIATIVE_ARRAY Windydelta BEGIN 0x42e7d7 => 480 0x42ec31 => 480 0x43054c => 480 END
 		DEFINE_ASSOCIATIVE_ARRAY Windxdelta' BEGIN 0x42f305 => 640 0x42f88a => 640 0x4311a5 => 640 END
 		DEFINE_ASSOCIATIVE_ARRAY Windydelta' BEGIN 0x42f300 => 480 0x42f891 => 480 0x4311ac => 480 END
+		DEFINE_ASSOCIATIVE_ARRAY Windxdelta'' BEGIN 0x421b1c => 640 0x421f6a => 640 0x423885 => 640 END
+		DEFINE_ASSOCIATIVE_ARRAY Windydelta'' BEGIN 0x421b17 => 480 0x421f71 => 480 0x42388c => 480 END
 	  DEFINE_ASSOCIATIVE_ARRAY Fullxdelta BEGIN 0x85241  => 639 END
 	  DEFINE_ASSOCIATIVE_ARRAY Fullydelta BEGIN 0x856a9  => 479 END
 	  DEFINE_ASSOCIATIVE_ARRAY Fullxdelta' BEGIN 0x85201  => 639 END
 	  DEFINE_ASSOCIATIVE_ARRAY Fullydelta' BEGIN 0x85669  => 479 END
+	  DEFINE_ASSOCIATIVE_ARRAY Fullxdelta'' BEGIN 0x83baa  => 639 END
+	  DEFINE_ASSOCIATIVE_ARRAY Fullydelta'' BEGIN 0x84012  => 479 END
 	END
 END ELSE BEGIN
 	PRINT @4

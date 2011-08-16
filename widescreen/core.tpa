@@ -1,7 +1,12 @@
-OUTER_SET x = 1680
-OUTER_SET y = 1050
+OUTER_SET x = 1024
+OUTER_SET y = 600
 OUTER_SET f = 1
 OUTER_TEXT_SPRINT sure n
+
+OUTER_TEXT_SPRINT doUpdateSave n
+OUTER_TEXT_SPRINT doBigger n
+OUTER_SET biggerX = 1680
+OUTER_SET biggerY = 1050
 
 OUTER_SET xOld = 1024
 OUTER_SET yOld = 768
@@ -35,7 +40,21 @@ INCLUDE ~widescreen/%lib%/patch_chu.tpa~
 
 OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_mos.tpa~ LAUNCH_ACTION_MACRO safe_include
 
-OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+ACTION_IF patchExe THEN BEGIN
+  ACTION_TRY
+    OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+  WITH
+      ~Failure(.resource \[.*\.WED\] not found for .COPY..)~ BEGIN
+      PRINT @35
+      ACTION_RERAISE
+    END DEFAULT
+      ACTION_RERAISE
+  END
+  
+  ACTION_IF ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
+  OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_sav.tpa~ LAUNCH_ACTION_MACRO safe_include
+  END
+END
 
 ACTION_IF  x < 1024 || y < 768 THEN BEGIN
 	OUTER_TEXT_SPRINT w ~widescreen/%lib%/small_post.tpa~ LAUNCH_ACTION_MACRO safe_include
@@ -64,6 +83,7 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 			COMPILE_BAF_TO_BCS
 		END
 	BUT_ONLY_IF_IT_CHANGES
+  IF ~264~
 END
 
 // the gemrb convention for custom resolutions is "cgui" + first two

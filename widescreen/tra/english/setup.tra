@@ -1,0 +1,54 @@
+@0    = ~Widescreen Mod v3.02~
+@1    = ~Widescreen Mod~
+@3    = ~Unsupported game.~
+@4    = ~
+
+Your game is not currently supported, sorry.
+Only ToB (eventually with Tutu), TotSC, PST, IWD2 and TotLM currently work.
+
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~
+@-1004 = ~PLEASE post the contents of the file~
+@-1005 = ~to this forum:~
+@5    = ~Enter your X coordinate. It should be a number, >= 800.~
+@7    = ~Enter your Y coordinate. It should be a number, >= 600.~
+@13   = ~Are you sure? Y/N~
+@14   = ~%ii% %i% %curr%~
+@15   = ~%ii% %i% %new%~
+@16 = ~EXE PATCHING FAILED.~
+@17   = ~Enter your X coordinate. It should be a number, >= 640 (but not 641).~
+@19   = ~Enter your Y coordinate. It should be a number, >= 482.~
+@20   = ~%x% x %y%.~
+@21   = ~Compressed bitmap.~
+@22   = ~Unknown bitmap type. Bigg should program this.~
+@23   = ~%bits% BPP.~
+@24   = ~%SOURCE_RES% %sig%~
+@25   = ~MOSC~
+@26   = ~for the original Infinity Engine (CHOOSE THIS!)~
+@27   = ~for GemRB~
+@28   = ~Enter your X coordinate. It should be a number, >= 640.~
+@29   = ~Enter your Y coordinate. It should be a number, >= 480.~
+@30   = ~If you have games saved at another resolution and don't update them,
+they will be unusable. If you update them, all visited areas will be marked
+as not explored.
+
+Do you want to update your save games? Y/N~
+@31   = ~Do you want to enable support for multiple resolutions? Y/N~
+@32   = ~Enter the BIGGEST X coordinate you want to support. It should be a number, >= %x%.~
+@33   = ~Enter the BIGGEST Y coordinate you want to support. It should be a number, >= %y%.~
+@34   = ~Game resolution: %x% x %y%; save resolution: %biggerX% x %biggerY%; updating saves: %doUpdateSave%~
+@35   = ~
+
+You need to perform a full install of your game and make sure that the .ini points to the correct paths.
+
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~
+@36 = ~
+
+You need to install the latest patch (which would be Trials of the Luremaster if you're on Heart of Winter) and make sure you aren't installing the mod twice (which includes attempting to install it on EasyTutu or a cloned install when it is already installed on your main install).
+
+Posts reporting this problem WILL BE IGNORED unless you can prove you're under exceptional circumstances.
+
+~

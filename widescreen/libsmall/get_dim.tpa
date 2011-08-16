@@ -1,0 +1,74 @@
+OUTER_PATCH ~~ BEGIN
+	WHILE ~%sure%~ STRING_COMPARE_CASE ~y~ BEGIN
+		SET x = 0
+		SET y = 0
+		SET f = 1
+    SPRINT sure ~~
+		WHILE x < 640 BEGIN
+			TEXT_SPRINT x ~foo~
+			WHILE ! IS_AN_INT ~%x%~ BEGIN
+				PATCH_PRINT @28
+				PATCH_READLN x
+			END
+		END
+	
+		WHILE y < 480 BEGIN
+			TEXT_SPRINT y ~foo~
+			WHILE ! IS_AN_INT ~%y%~ BEGIN
+				PATCH_PRINT @29
+				PATCH_READLN y
+			END
+		END
+    
+    TEXT_SPRINT doUpdateSave ~~
+    WHILE ~%doUpdateSave%~ STRING_COMPARE_CASE ~Y~ && ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ BEGIN
+      PATCH_PRINT @30
+      PATCH_READLN doUpdateSave
+    END
+    
+    TEXT_SPRINT doBigger ~~
+    SET biggerX = 0
+    SET biggerY = 0
+    WHILE ~%doBigger%~ STRING_COMPARE_CASE ~Y~ && ~%doBigger%~ STRING_COMPARE_CASE ~N~ BEGIN
+      PATCH_PRINT @31
+      PATCH_READLN doBigger
+    END
+    
+    PATCH_IF ~%doBigger%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
+      SET biggerX = 0
+      SET biggerY = 0
+      WHILE biggerX < x BEGIN
+        TEXT_SPRINT biggerX ~foo~
+        WHILE ! IS_AN_INT ~%biggerX%~ BEGIN
+          PATCH_PRINT @32
+          PATCH_READLN biggerX
+        END
+      END
+    
+      WHILE biggerY < y BEGIN
+        TEXT_SPRINT biggerY ~foo~
+        WHILE ! IS_AN_INT ~%biggerY%~ BEGIN
+          PATCH_PRINT @33
+          PATCH_READLN biggerY
+        END
+      END
+    END ELSE BEGIN
+      biggerX = x
+      biggerY = y
+    END
+	
+		PATCH_PRINT @34
+
+    WHILE ~%sure%~ STRING_COMPARE_CASE ~N~ && ~%sure%~ STRING_COMPARE_CASE ~Y~ BEGIN
+      PATCH_PRINT @13
+      PATCH_READLN sure
+    END
+	END
+END
+
+OUTER_SET f = 1
+
+COPY - ~%gameini%~ ~.../dump~
+	REPLACE_EVALUATE ~Full Screen=\([01]\)~ BEGIN
+		SET f = ~%MATCH1%~
+	END ~%MATCH0%~
