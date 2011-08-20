@@ -13,7 +13,7 @@ Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez 
 @-1005 = ~dans ce forum :~
 @5    = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 800.~
 @7    = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 600.~
-@13   = ~Etes-vous sur(e)? Y (oui) / N (non)~
+@13   = ~Etes-vous sur(e) ? Y (oui) / N (non)~
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
 @16   = ~Echec du patch de l'executable.~
@@ -55,14 +55,16 @@ Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez 
 @-1000= "Le mod %TP2_FILE_NAME% contient"
 @-1001= "composants optionnels distincts.
 Pour gagner du temps, vous pouvez choisir ce que vous souhaitez faire d'eux
-au niveau general plutot que de repondre aux questions pour chacun.\n"
+au niveau general plutot que de repondre aux questions pour chacun.
+"
 @-1002= "Que faut-il faire de tous les composants qui NE sont PAS ENCORE installes ?
 Les [I]nstaller, les [S]auter, dem[A]nder pour chacun ? "
 @-1003= "Que faut-il faire de tous les composants qui sont DEJA installes ?
-Les [R]einstaller, les s[U]pprimer, dem[A]nder pour chacun ? "
+Les [R]einstaller, les s[U]pprimer, les [S]auter, dem[A]nder pour chacun ? "
 
-//@-1004= "S'IL VOUS PLAIT, envoyez par e-mail le fichier"
-//@-1005= "a"
+// Déjà présents, dans une version alternative, dans les lignes propres au mod
+// @-1004= "S'IL VOUS PLAIT, envoyez par e-mail le fichier"
+// @-1005= "a"
 
 @-1006= "Installer le composant ["
 @-1007= "] ?
@@ -89,3 +91,28 @@ Les [R]einstaller, les s[U]pprimer, dem[A]nder pour chacun ? "
 @-1022= "] (composant #"
 @-1023= ")"
 @-1024= "SUPPRESSION REUSSIE DE ["
+
+@-1025= "] ?
+[R]einstaller, co[N]server, s[U]pprimer, [Q]uitter ou choisir un parmi :"
+@-1026= "] ?
+[N]e pas installer, [Q]uitter ou choisir un parmi :"
+@-1027= " (installe actuellement)"
+
+@-1028= "Souhaitez-vous afficher les composants de ["
+@-1029= "] ?
+[Y]Oui, [N]on ? "
+
+@-1030= "] ?
+choisir un parmi :"
+@-1031= "] ?
+[R]einstaller, co[N]server, [Q]uitter ou choisir un parmi :"
+@-1032= "INSTALLATION ECHOUEE A CAUSE D'ERREURS"
+@-1033= "INSTALLATION AVEC DES ALERTES"
+@-1034= "Souhaitez-vous afficher les instructions (ReadMe) ? [Y]Oui [N]on"
+@-1035= "Dans la langue"
+
+@-1036= "Saute le GROUPE ["
+@-1037= "] pour cause d'absence des pre-requis."
+
+@-1038= "dem[A]nder pour chaque composant, tout [S]auter, ou choisir une selection pre-definie :"
+@-1039= "dem[A]nder pour chaque composant, [R]einstaller la configuration courante, tout s[U]pprimer, tout [S]auter, ou choisir une selection pre-definie :"
