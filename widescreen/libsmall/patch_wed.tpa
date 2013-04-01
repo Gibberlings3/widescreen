@@ -110,3 +110,19 @@ COPY_EXISTING ~%source_res%.wed~ ~override~
 	FOR (j = xMaxWed; j < xReq; j += 1) BEGIN
 		LAUNCH_PATCH_MACRO ~add_one_col~
 	END
+
+	READ_LONG 0x14 sec_head
+	READ_LONG sec_head + 0x0c wallGroupTbl_off
+	SET orig_wg_cols = (xMaxWed + 9) / 10
+	SET orig_wg_rows = (yMaxWed * 64 + 479) / 480
+	SET new_wg_cols = (xReq + 9) / 10
+	SET new_wg_rows = (yReq * 64 + 479) / 480
+	delta = (new_wg_cols * new_wg_rows - orig_wg_cols * orig_wg_rows) * 4
+	PATCH_IF (delta != 0) BEGIN
+		fix_from_where = wallGroupTbl_off + 1
+		LAUNCH_PATCH_MACRO fix_offset		
+		FOR (j = 0; j < orig_wg_rows; j += 1) BEGIN
+			INSERT_BYTES wallGroupTbl_off + (j * new_wg_cols + orig_wg_cols) * 4 (new_wg_cols - orig_wg_cols) * 4
+		END
+		INSERT_BYTES wallGroupTbl_off + new_wg_cols * orig_wg_rows * 4 (new_wg_rows - orig_wg_rows) * new_wg_cols * 4
+	END
