@@ -5,8 +5,6 @@ DEFINE_PATCH_MACRO fix_bmp BEGIN
 	READ_LONG  22 yBmp
 	READ_SHORT 28 bits
 	READ_LONG  30 comp
-	xRatio = xBmp * 1000000 / (xMaxWed - 64 * 3)
-	yRatio = yBmp * 1000000 / (yMaxWed - 64 * 3)
 	PATCH_IF comp THEN BEGIN
 		INNER_ACTION BEGIN
 			PRINT @21
@@ -19,8 +17,8 @@ DEFINE_PATCH_MACRO fix_bmp BEGIN
 			FAIL @22
 		END
 	END
-	nx = xRatio * xReq / 1000000
-	ny = yRatio * yReq / 1000000
+	nx = xReq * 4
+	ny = ( yReq * 64 + 11 ) / 12
 	PATCH_IF nx < xBmp THEN BEGIN
 		nx = xBmp
 	END
@@ -55,11 +53,12 @@ DEFINE_PATCH_MACRO fix_bmp BEGIN
 	END ELSE BEGIN
 		fill = 0
 	END
+	SET cbWidth = xBmp * bits / 8
 	FOR (i = 0; i < yBmp; i +=1) BEGIN
-		off = i * ns + ls + rOff
-		INSERT_BYTES off (ns - ls)
-		FOR (j = 0; j < (ns - ls); j +=1) BEGIN
-			WRITE_BYTE off + j fill
+		SET line = i * ns + rOff
+		INSERT_BYTES line + ls (ns - ls)
+		FOR (j = 0; j < (ns - cbWidth); j +=1) BEGIN
+			WRITE_BYTE line + cbWidth + j fill
 		END
 	END
 	INSERT_BYTES rOff ns * (ny - yBmp)
