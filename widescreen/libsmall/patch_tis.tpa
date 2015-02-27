@@ -5,7 +5,7 @@ OUTER_SET $allOutDirAreas(EVALUATE_BUFFER "%outDirAreas%") = 1
 MKDIR ~widescreen/temp~
 MKDIR ~widescreen/temp/%outDirAreas%~
 
-COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
+DEFINE_PATCH_MACRO edit_tis_file BEGIN
 	READ_LONG 0x08 cnt
 	READ_LONG 0x0c tiles_len
 	READ_LONG 0x10 off
@@ -13,6 +13,41 @@ COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
 	INSERT_BYTES off + cnt * tiles_len  tiles_len * xReq * (yReq - yMaxWed)
 	INSERT_BYTES off + cnt * tiles_len  tiles_len * yMaxWed * (xReq - xMaxWed)
 	WRITE_LONG 0x08 cnt + xReq * yReq - xMaxWed * yMaxWed
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~%source_res%.tis~ !FILE_EXISTS ~widescreen/temp/%outDirAreas%/%source_res%.tis~ BEGIN
+	COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
+		LPM edit_tis_file
+END ELSE ACTION_IF !FILE_EXISTS ~widescreen/temp/%outDirAreas%/%source_res%.tis~ BEGIN
+	OUTER_SET do_it = 0
+
+	COPY_EXISTING - ~%source_res%.wed~ ~...~
+		READ_LONG    8 overlay_cnt
+		READ_LONG 0x10 overlay_off
+		__xMaxWed = 0
+		__yMaxWed = 0
+		__whichMax = 0
+		FOR (i = 0; i < overlay_cnt; i+=1) BEGIN
+			READ_SHORT overlay_off + i * 0x18 + 0 __xWed
+			READ_SHORT overlay_off + i * 0x18 + 2 __yWed
+			READ_ASCII overlay_off + i * 0x18 + 4 7c#tis_file
+			PATCH_IF xWed >= __xMaxWed && __yWed >= __yMaxWed THEN BEGIN
+				__xMaxWed = __xWed
+				__yMaxWed = __yWed
+				__whichMax = i
+			END
+		END
+		PATCH_IF (__xMaxWed - 3) * 64 < biggerX || (__yMaxWed - 3) * 64 < biggerY THEN BEGIN
+			SET do_it = 1
+		END
+		
+	ACTION_IF !FILE_EXISTS ~widescreen/temp/%outDirAreas%/%7c#tis_file%.tis~ &&
+		  FILE_EXISTS_IN_GAME ~%7c#tis_file%.wed~ && do_it
+	BEGIN
+		COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
+			LPM edit_tis_file
+	END
+END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~%source_res%.mos~ BEGIN
 	COPY_EXISTING ~%source_res%.mos~ ~override~
