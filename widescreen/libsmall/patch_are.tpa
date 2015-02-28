@@ -20,9 +20,10 @@ COPY_EXISTING_REGEXP - GLOB ~^.*\.wed$~ ~...~
 				whichMax = i
 			END
 		END
-		PATCH_IF (xMaxWed - 3) * 64 < biggerX || (yMaxWed - 3) * 64 < biggerY THEN BEGIN
+		PATCH_IF (xMaxWed - 3) * 64 < biggerX || (yMaxWed - 3) * 64 < biggerY && overlay_cnt > 0 THEN BEGIN
+			READ_ASCII overlay_off + whichMax * 0x18 + 4 tisFile
 			INNER_ACTION BEGIN
-				APPEND_OUTER ~widescreen/areas~ ~%SOURCE_RES% %xMaxWed% %yMaxWed%~
+				APPEND_OUTER ~widescreen/areas~ ~%SOURCE_RES% %xMaxWed% %yMaxWed% %tisFile%~
 			END
 		END
 	END
@@ -34,6 +35,7 @@ COPY ~widescreen/areas~ ~widescreen~
 		READ_2DA_ENTRY_FORMER areas_to_fix bfg 0 source_res
 		READ_2DA_ENTRY_FORMER areas_to_fix bfg 1 xMaxWed
 		READ_2DA_ENTRY_FORMER areas_to_fix bfg 2 yMaxWed
+		READ_2DA_ENTRY_FORMER areas_to_fix bfg 3 tisFile
 		origArea = xMaxWed * yMaxWed
 		xReq = biggerX / 64 + 3
 		yReq = biggerY / 64 + 3

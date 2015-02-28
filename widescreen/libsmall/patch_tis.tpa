@@ -1,11 +1,11 @@
-OUTER_PATCH_SAVE outDirAreas ~%source_res%~ BEGIN
+OUTER_PATCH_SAVE outDirAreas ~%tisFile%~ BEGIN
 	DELETE_BYTES (BUFFER_LENGTH - 1) 1
 END
 OUTER_SET $allOutDirAreas(EVALUATE_BUFFER "%outDirAreas%") = 1
 MKDIR ~widescreen/temp~
 MKDIR ~widescreen/temp/%outDirAreas%~
 
-COPY_EXISTING ~%source_res%.tis~ ~widescreen/temp/%outDirAreas%~
+COPY_EXISTING ~%tisFile%.tis~ ~widescreen/temp/%outDirAreas%~
 	READ_LONG 0x08 cnt
 	READ_LONG 0x0c tiles_len
 	READ_LONG 0x10 off
