@@ -13,6 +13,7 @@ LANGUAGE ~Francais (Isaya & Lothringen)~ ~french~ ~widescreen/tra/french/setup.t
 LANGUAGE ~Spanish (ghildrean & Ancalagon el Negro)~ ~spanish~ ~widescreen/tra/spanish/setup.tra~
 LANGUAGE ~Russian by Prowler & Njkzy (arcanecoast.ru)~ ~russian~ ~widescreen/tra/russian/setup.tra~
 LANGUAGE ~Italiano~ ~italian~ ~widescreen/tra/italian/setup.tra~
+LANGUAGE ~Portoguese by Felipe~ ~portoguese~ ~widescreen/tra/portoguese/setup.tra~
 
 BEGIN @26
 SUBCOMPONENT @1
