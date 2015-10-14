@@ -15,6 +15,7 @@ DEFINE_ACTION_MACRO ~patch_this_one~ BEGIN
         PATCH_IF ~%SAV_EXT%~ STRING_EQUAL_CASE ~ARE~ THEN BEGIN
           READ_LONG 0x9c mask_len
           READ_LONG 0xa0 mask_off
+          new_mask_len = 0
           INNER_PATCH_FILE ~%SAV_RES%.wed~ BEGIN
             READ_LONG    8 overlay_cnt
             READ_LONG 0x10 overlay_off
