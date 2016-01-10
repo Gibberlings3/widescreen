@@ -20,7 +20,7 @@ COPY_EXISTING_REGEXP - GLOB ~^.*\.wed$~ ~...~
 				whichMax = i
 			END
 		END
-		PATCH_IF (xMaxWed - 3) * 64 < biggerX || (yMaxWed - 3) * 64 < biggerY && overlay_cnt > 0 THEN BEGIN
+		PATCH_IF ((xMaxWed - 3) * 64 < biggerX || (yMaxWed - 3) * 64 < biggerY) && overlay_cnt > 0 THEN BEGIN
 			READ_ASCII overlay_off + whichMax * 0x18 + 4 tisFile
 			INNER_ACTION BEGIN
 				APPEND_OUTER ~widescreen/areas~ ~%SOURCE_RES% %xMaxWed% %yMaxWed% %tisFile%~
