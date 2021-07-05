@@ -1,54 +1,53 @@
-@0    = ~Widescreen Mod v3.07~
-@1    = ~Widescreen Mod~
-@3    = ~Jogo não suportado.~
+@0    = ~Mod pra Widescreen v3.07~
+@1    = ~Mod pra Widescreen~
+@3    = ~Jogo nÃ£o suportado.~
 @4    = ~
 
-Seu jogo não é suportado atualmente, lamento.
-Só o ToB (eventualmente com Tutu), TotSC, PST, IWD2 e TotLM funcionam atualmente.
+Seu jogo nÃ£o Ã© suportado atualmente, lamento.
+SÃ³ o ToB (eventualmente com Tutu), TotSC, PST, IWD2 e TotLM funcionam atualmente.
 
-Posts reportando este problema SERÃO IGNORADOS a menos que você possa provar que você está sob circunstâncias excepcionais.
+Posts reportando este problema SERÃƒO IGNORADOS a menos que vocÃª possa provar que vocÃª estÃ¡ sob circunstÃ¢ncias excepcionais.
 
 ~
-@-1004 = ~POR FAVOR poste os conteúdos do arquivo~
-@-1005 = ~neste fórum:~
-@5    = ~Insira sua coordenada X. Deve ser um número, >= 800.~
-@7    = ~Insira sua coordenada Y. Deve ser um número, >= 600.~
-@13   = ~Você tem certeza? S/N~
+@-1004 = ~POR FAVOR poste os conteÃºdos do arquivo~
+@-1005 = ~neste fÃ³rum:~
+@5    = ~Insira sua coordenada X. Deve ser um nÃºmero, >= 800.~
+@7    = ~Insira sua coordenada Y. Deve ser um nÃºmero, >= 600.~
+@13   = ~VocÃª tem certeza? S/N~
 @14   = ~%ii% %i% %curr%~
 @15   = ~%ii% %i% %new%~
 @16  = ~O PATCHING DO EXE FALHOU.~
-@17   = ~Insira sua coordenada X. Deve ser um número, >= 640 (mas não 641).~
-@19   = ~Insira sua coordenada Y. Deve ser um número, >= 482.~
+@17   = ~Insira sua coordenada X. Deve ser um nÃºmero, >= 640 (mas nÃ£o 641).~
+@19   = ~Insira sua coordenada Y. Deve ser um nÃºmero, >= 482.~
 @20   = ~%x% x %y%.~
 @21   = ~Bitmap comprimido.~
-@22   = ~Tipo de bitmap desconhecido. Bigg devia programar isto.~
+@22   = ~Tipo de bitmap desconhecido. O Bigg deveria programar isto.~
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
 @26   = ~para a Infinity Engine original (ESCOLHA ESTA!)~
-@27   = ~para a GemRB~
-@28   = ~Insira sua coordenada X. Deve ser um número, >= 640.~
-@29   = ~Insira sua coordenada X. Deve ser um número, >= 480.~
-@30   = ~Se você tiver jogos salvos em outra resolução e não atualizá-los,
-eles ficarão inutilizáveis. Se você atualizá-los, todas as áreas visitadas serão marcadas
-como não exploradas.
+@27   = ~para o GemRB~
+@28   = ~Insira sua coordenada X. Deve ser um nÃºmero, >= 640.~
+@29   = ~Insira sua coordenada X. Deve ser um nÃºmero, >= 480.~
+@30   = ~Se vocÃª tiver jogos salvos em outra resoluÃ§Ã£o e nÃ£o atualizÃ¡-los eles ficarÃ£o inutilizÃ¡veis. Se vocÃª atualizÃ¡-los todas as Ã¡reas visitadas serÃ£o marcadas
+como nÃ£o exploradas.
 
-Você quer atualizar seus save games? S/N~
-@31 = ~Você quer ativar o suporte para resoluções múltiplas? S/N~
-@32 = ~Insira a MAIOR coordenada X que você queira suportar. Dever ser um número, >= %x%.~
-@33 = ~Insira a MAIOR coordenada Y que você queira suportar. Dever ser um número, >= %y%.~
-@34 = ~Resolução do jogo: %x% x %y%; resolução do save: %biggerX% x %biggerY%; atualizando saves: %doUpdateSave%~
+VocÃª quer atualizar seus jogos salvos? S/N~
+@31 = ~VocÃª quer ativar o suporte pra resoluÃ§Ãµes mÃºltiplas? S/N~
+@32 = ~Insira a MAIOR coordenada X que vocÃª quer suportar. Deve ser um nÃºmero, >= %x%.~
+@33 = ~Insira a MAIOR coordenada Y que vocÃª quer suportar. Deve ser um nÃºmero, >= %y%.~
+@34 = ~ResoluÃ§Ã£o do jogo: %x% x %y%; resoluÃ§Ã£o do save: %biggerX% x %biggerY%; atualizando saves: %doUpdateSave%~
 @35 = ~
 
-Você precisa realizar uma instalação completa do seu jogo e ter certeza de que o .ini aponta para os caminhos corretos.
+VocÃª precisa realizar uma instalaÃ§Ã£o completa do seu jogo e ter certeza que o .ini aponta para os caminhos corretos.
 
-Posts reportando este problema SERÃO IGNORADOS a menos que você possa provar que você está sob circunstâncias excepcionais.
+Posts reportando este problema SERÃƒO IGNORADOS a menos que vocÃª possa provar que vocÃª estÃ¡ sob circunstÃ¢ncias excepcionais.
 
 ~
 @36 = ~
 
-Você precisa instalar o último patch (o qual seria o Trials of the Luremaster se você está no Heart of Winter) e ter certeza de que você não está instalando o mod duas vezes (o que inclui tentar instalá-lo no EasyTutu ou em uma instalação clonada quando ele já está instalado na sua instalação principal).
+VocÃª precisa instalar o patch mais recente (o qual seria o Trials of the Luremaster se vocÃª estÃ¡ no Heart of Winter) e ter certeza que vocÃª nÃ£o estÃ¡ instalando o mod duas vezes (o que inclui tentar instalÃ¡-lo no EasyTutu ou numa instalaÃ§Ã£o clonada quando ele jÃ¡ estÃ¡ instalado na sua instalaÃ§Ã£o principal).
 
-Posts reportando este problema SERÃO IGNORADOS a menos que você possa provar que você está sob circunstâncias excepcionais.
+Posts reportando este problema SERÃƒO IGNORADOS a menos que vocÃª possa provar que vocÃª estÃ¡ sob circunstÃ¢ncias excepcionais.
 
 ~
