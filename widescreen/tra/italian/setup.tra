@@ -25,8 +25,6 @@ Segnalazioni di questo errore SARANNO IGNORATE a meno che non vi siano circostan
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
-@26   = ~Per il motore Infinity normale (SCEGLI QUESTO!)~
-@27   = ~Per GemRB~
 @28   = ~Inserire la larghezza in pixel. Dev'essere un numero, >= 640.~
 @29   = ~Inserire l'altezza in pixel. Dev'essere un numero, >= 480.~
 @30   = ~Se hai giochi salvati con un'altra risoluzione e non li aggiorni,

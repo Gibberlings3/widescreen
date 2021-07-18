@@ -25,10 +25,8 @@ INCLUDE ~widescreen/lib/game_config.tpa~
 
 INCLUDE ~widescreen/%lib%/get_dim.tpa~
 
-// don't try to patch gemrb
-ACTION_IF patchExe == 1 THEN BEGIN
-	INCLUDE ~widescreen/%lib%/patch_exe.tpa~
-END
+INCLUDE ~widescreen/%lib%/patch_exe.tpa~
+
 
 OUTER_TEXT_SPRINT w ~widescreen/%lib%/load_chu.tpa~ LAUNCH_ACTION_MACRO safe_include
 
@@ -40,20 +38,18 @@ INCLUDE ~widescreen/%lib%/patch_chu.tpa~
 
 OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_mos.tpa~ LAUNCH_ACTION_MACRO safe_include
 
-ACTION_IF patchExe THEN BEGIN
-  ACTION_TRY
-    OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
-  WITH
-      ~Failure(.resource \[.*\.WED\] not found for .COPY..)~ BEGIN
-      PRINT @35
-      ACTION_RERAISE
-    END DEFAULT
-      ACTION_RERAISE
-  END
-  
-  ACTION_IF ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
-  OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_sav.tpa~ LAUNCH_ACTION_MACRO safe_include
-  END
+ACTION_TRY
+	OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_are.tpa~ LAUNCH_ACTION_MACRO safe_include
+WITH
+		~Failure(.resource \[.*\.WED\] not found for .COPY..)~ BEGIN
+		PRINT @35
+		ACTION_RERAISE
+	END DEFAULT
+		ACTION_RERAISE
+END
+
+ACTION_IF ~%doUpdateSave%~ STRING_COMPARE_CASE ~N~ THEN BEGIN
+OUTER_TEXT_SPRINT w ~widescreen/%lib%/patch_sav.tpa~ LAUNCH_ACTION_MACRO safe_include
 END
 
 ACTION_IF  x < 1024 || y < 768 THEN BEGIN
@@ -84,19 +80,4 @@ ACTION_IF ENGINE_IS ~TotLM IWD2~ THEN BEGIN
 		END
 	BUT_ONLY_IF_IT_CHANGES
   IF ~264~
-END
-
-// the gemrb convention for custom resolutions is "cgui" + first two
-// digits of height + first two digits of width
-ACTION_IF patchExe == 0 THEN BEGIN
-	OUTER_SET x1 = x/100 < 10 ? x/10 : x/100
-	OUTER_SET y1 = y/100 < 10 ? y/10 : y/100
-	OUTER_SPRINT newName "cgui%x1%%y1%"
-
-	// use optNoBackup so the target isn't tracked and we can have multiple
-	ACTION_IF ~%lib%~ STRING_EQUAL ~lib~ THEN BEGIN
-		COPY_EXISTING + ~guiw10.chu~ ~override/%newName%.chu~
-	END ELSE BEGIN
-		COPY_EXISTING + ~%chu%.chu~ ~override/%newName%.chu~
-	END
 END

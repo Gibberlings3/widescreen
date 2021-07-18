@@ -25,8 +25,6 @@ Posts reportando este problema SERÃO IGNORADOS a menos que você possa provar q
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
-@26   = ~para a Infinity Engine original (ESCOLHA ESTA!)~
-@27   = ~para o GemRB~
 @28   = ~Insira sua coordenada X. Deve ser um número, >= 640.~
 @29   = ~Insira sua coordenada X. Deve ser um número, >= 480.~
 @30   = ~Se você tiver jogos salvos em outra resolução e não atualizá-los eles ficarão inutilizáveis. Se você atualizá-los todas as áreas visitadas serão marcadas

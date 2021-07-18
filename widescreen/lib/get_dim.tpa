@@ -3,29 +3,25 @@ OUTER_PATCH ~~ BEGIN
 		SET x = 0
 		SET y = 0
 		SET f = 1
-		WHILE (x < 800 || GAME_IS ~iwd2~) && (x < 640 || (patchExe && x = 641)) BEGIN
+		WHILE (x < 800 || GAME_IS ~iwd2~) && (x <= 641) BEGIN
 			TEXT_SPRINT x ~foo~
 			WHILE ! IS_AN_INT ~%x%~ BEGIN
         PATCH_IF GAME_IS ~iwd2~ THEN BEGIN
           PATCH_PRINT @5
-        END ELSE PATCH_IF patchExe THEN BEGIN
-          PATCH_PRINT @17
         END ELSE BEGIN
-          PATCH_PRINT @28
+          PATCH_PRINT @17
         END
 				PATCH_READLN x
 			END
 		END
 
-		WHILE (y < 600 || GAME_IS ~iwd2~) && (y < 482 && (patchExe || y < 480)) BEGIN
+		WHILE (y < 600 || GAME_IS ~iwd2~) && (y < 482) BEGIN
 			TEXT_SPRINT y ~foo~
 			WHILE ! IS_AN_INT ~%y%~ BEGIN
         PATCH_IF GAME_IS ~iwd2~ THEN BEGIN
           PATCH_PRINT @7
-        END ELSE PATCH_IF patchExe THEN BEGIN
-          PATCH_PRINT @19
         END ELSE BEGIN
-          PATCH_PRINT @29
+          PATCH_PRINT @19
         END
 				PATCH_READLN y
 			END
