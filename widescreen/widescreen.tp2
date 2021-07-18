@@ -1,12 +1,11 @@
 BACKUP ~widescreen/backup~
-AUTHOR ~http://bit.ly/hf2XsG~
+SUPPORT ~https://www.gibberlings3.net/forums/forum/136-widescreen-mod/~ // Author: the bigg
+
+VERSION ~v3.08~
 
 ALLOW_MISSING ~ar1010.wed~
 
-VERSION ~Widescreen Mod v3.07~
-
 README ~widescreen/readme-widescreen-%LANGUAGE%.html~ ~widescreen/readme-widescreen.html~
-
 
 LANGUAGE ~English~ ~english~ ~widescreen/tra/english/setup.tra~
 LANGUAGE ~Francais (Isaya & Lothringen)~ ~french~ ~widescreen/tra/french/setup.tra~
@@ -15,7 +14,7 @@ LANGUAGE ~Russian by Prowler & Njkzy (arcanecoast.ru)~ ~russian~ ~widescreen/tra
 LANGUAGE ~Italiano~ ~italian~ ~widescreen/tra/italian/setup.tra~
 LANGUAGE ~Portoguese by Felipe~ ~portoguese~ ~widescreen/tra/portoguese/setup.tra~
 
-BEGIN @26
+BEGIN @26 DESIGNATED 0 LABEL "Widescreen-Main"
 SUBCOMPONENT @1
 OUTER_SET patchExe = 1
 INCLUDE ~widescreen/core.tpa~
