@@ -1,4 +1,4 @@
-@0    = ~Mod Widescreen v3.07~
+@0    = ~Mod Widescreen v3.08~
 @1    = ~Mod Widescreen~
 @3    = ~Jeu non supporte.~
 @4    = ~
@@ -25,8 +25,6 @@ Les messages rapportant ce probleme seront IGNORES a moins que vous ne puissiez 
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
-@26   = ~pour les jeux Infinity Engine originaux (CHOISISSEZ CA !)~
-@27   = ~pour GemRB~
 @28   = ~Indiquez la taille sur l'axe X. Il doit s'agir d'un nombre >= 640.~
 @29   = ~Indiquez la taille sur l'axe Y. Il doit s'agir d'un nombre >= 480.~
 @30 = ~Si vous avez des parties sauvegardees sous une autre resolution et que vous ne les mettez pas a jour, elles deviendront inutilisables. Si vous les mettez a jour, toutes les zones visitees seront marquees comme inexplorees.

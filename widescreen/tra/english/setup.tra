@@ -1,4 +1,4 @@
-@0    = ~Widescreen Mod v3.07~
+@0    = ~Widescreen Mod v3.08~
 @1    = ~Widescreen Mod~
 @3    = ~Unsupported game.~
 @4    = ~
@@ -25,8 +25,6 @@ Posts reporting this problem WILL BE IGNORED unless you can prove you're under e
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
-@26   = ~for the original Infinity Engine (CHOOSE THIS!)~
-@27   = ~for GemRB~
 @28   = ~Enter your X coordinate. It should be a number, >= 640.~
 @29   = ~Enter your Y coordinate. It should be a number, >= 480.~
 @30   = ~If you have games saved at another resolution and don't update them,

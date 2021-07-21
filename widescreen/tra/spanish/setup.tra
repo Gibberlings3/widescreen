@@ -1,4 +1,4 @@
-@0    = ~Widescreen Mod v3.07~
+@0    = ~Widescreen Mod v3.08~
 @1    = ~Widescreen Mod~
 @3    = ~Juego no soportado.~
 @4    = ~
@@ -25,8 +25,6 @@ Los post informando de este problema SERAN IGNORADOS a menos que puedas probar q
 @23   = ~%bits% BPP.~
 @24   = ~%SOURCE_RES% %sig%~
 @25   = ~MOSC~
-@26   = ~para el Infinity Engine original (ELIGE ESTE!)~
-@27   = ~para GemRB~
 @28   = ~Introduce la coordenada X. Debe ser un numero, >= 640.~
 @29   = ~Introduce la coordenada Y. Debe ser un numero, >= 480.~
 @30 = ~Si tienes las partidas guardadas en otra resolucion y no las actualizas,
